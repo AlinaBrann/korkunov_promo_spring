@@ -8,7 +8,7 @@
       ></video>
       <button
         @click="showVideoPopup()"
-        class="constructor-step__video-overlay"
+        class="constructor-step__video-overlay _play"
       ></button>
     </div>
     <div class="constructor-step__pincode-block">
@@ -89,7 +89,7 @@
         <li>
           <a
             href=""
-            @click.prevent="shareLink('https://vk.com/share.php?url=')"
+            @click.prevent="shareLink()"
             class="constructor-step__social-link"
           >
             <svg
@@ -109,7 +109,7 @@
         <li>
           <a 
             href="" 
-            @click.prevent="shareLink('http://www.facebook.com/sharer.php?u=')"
+            @click.prevent="shareLink()"
             class="constructor-step__social-link">
             <svg
               width="10"
@@ -128,7 +128,7 @@
         <li>
           <a 
             href="" 
-            @click.prevent="shareLink('https://connect.ok.ru/offer?url=')"
+            @click.prevent="shareLink()"
             class="constructor-step__social-link">
             <svg
               width="9"
@@ -183,11 +183,11 @@ export default {
       document.execCommand("copy", false);
       inp.remove();
     },
-    shareLink(url) {
+    shareLink() {
       if (navigator.share) {
         navigator.share({
-          title: 'WebShare API Demo',
-          url: url + this.homeUrl + '/greeting-preview?pincode=' + this.code
+          title: 'Тому, кто важен. Создавайте видеопоздравления от Коркунов',
+          url: this.homeUrl + '/greeting-preview?pincode=' + this.code
         }).then(() => {
           console.log('Thanks for sharing!');
           

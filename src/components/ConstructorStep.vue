@@ -135,6 +135,11 @@ export default {
       background: url("../assets/images/constructor/overlay.svg") no-repeat
         center;
       background-size: cover;
+      &._play {
+        background: url("../assets/images/constructor/overlay-2.svg") no-repeat
+        center;
+        background-size: cover;
+      }
     }
   }
   &__clock {
