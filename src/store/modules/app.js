@@ -23,7 +23,9 @@ const app = {
       data: null,
     },
     signupSocId: null,
+    
   },
+
   mutations: {
 
   	SIGNUP_SOC_ID: (state, data) => {

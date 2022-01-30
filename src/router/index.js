@@ -12,6 +12,7 @@ const titlePrefix = "Поздравьте того, кто важен — ";
 const routes = [
   {
     path: "/",
+    // redirect: "/",
     name: "Home",
     component: Home,
     meta: {
@@ -20,6 +21,7 @@ const routes = [
   },
   {
     path: "/coming-soon",
+    // path: "/",
     name: "ComingSoon",
     component: ComingSoon,
     meta: {

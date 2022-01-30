@@ -18,6 +18,7 @@ import {
   searchWinners,
   getPrizes,
   sendFeedback,
+  sendEntries,
   uploadImage,
 } from "../../api/user";
 import { getToken, setToken, removeToken } from "../../utils/auth";
@@ -88,6 +89,9 @@ const account = {
       return (async () => sendFeedback(data))();
     },
 
+    SendEntries({ commit }, data) {
+      return (async () => sendEntries(data))();
+    },
     UploadImage({ commit }, data) {
       return (async () => uploadImage(data))();
     },

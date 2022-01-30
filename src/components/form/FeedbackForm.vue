@@ -2,7 +2,6 @@
   <div class="feedback">
     <form>
       <inputText
-        label="Имя"
         placeholder="Ваше имя"
         :field="email"
         @input="name = $event"
@@ -16,7 +15,6 @@
         "
       />
       <inputText
-        label="E-mail"
         placeholder="Ваш E-mail"
         :field="email"
         @input="email = $event"
@@ -33,7 +31,6 @@
       />
 
       <textArea
-        label="Сообщение"
         placeholder="Текст обращения"
         :field="message"
         @input="message = $event"
@@ -183,9 +180,6 @@ export default {
             if (r.error !== 0) {
               this.submitStatus = null;
 
-              this.$refs.recaptcha.reset();
-              this.captcha = null;
-
               let fieldsError = null;
 
               if (r.message && r.message.email) {
@@ -241,6 +235,15 @@ export default {
   }
   &__checkbox_list {
     margin-bottom: rem(30px);
+  }
+  &__footer {
+    display: flex;
+    justify-content: center;
+  }
+  @media (max-width: $sm) {
+    &__text {
+      font-size: rem(10px);
+    }
   }
 }
 </style>

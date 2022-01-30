@@ -1,52 +1,60 @@
 .form {
 
-    &__field {
+	&__field {
 		position: relative;
-        display: block;
-        margin-bottom: rem(20px);
+		display: block;
+		margin-bottom: rem(20px);
 
-        &--white.error {
-        	input {
-				border-color: #D63A3A;;
-	        	background: #F7CDCD;
-			}
-        }
-
-        &.error {
-        	input {
+		&--white.error {
+			input {
 				border-color: #D63A3A;
-	        	background: #F7CDCD;
+				;
+				background: #F7CDCD;
 			}
-        }
-    }
+		}
 
-    &__caption {
-        font-size: rem(14px);
-		line-height: rem(16px);
-        color: #000;
-		text-transform: none;
-        margin-bottom: rem(3px);
-    }
+		&.error {
+			input {
+				border-color: #D63A3A;
+				background: #F7CDCD;
+			}
+		}
+	}
 
-    &-textarea.error {
-    	textarea {
-	    	border-color: #D63A3A;
+	&__caption {
+		display: flex;
+		font-size: rem(10px);
+		line-height: rem(14px);
+		color: #FFF;
+		text-transform: uppercase;
+		font-family: "Bold";
+		margin-bottom: rem(6px);
+		letter-spacing: 1px;
+	}
+
+	&-textarea.error {
+		textarea {
+			border-color: #D63A3A;
 			background: #F7CDCD;
 		}
-    }
+	}
+
+	&__tooltip {
+		margin-top: rem(1px);
+		margin-left: rem(4px);
+	}
 }
 
 .btn.btn--primary {
-
 	position: relative;
-	
+
 	& img {
 		display: none;
 		position: absolute;
 		width: 2.5rem;
 		right: 0;
 		top: 50%;
-		transform: translate(0,-50%);
+		transform: translate(0, -50%);
 	}
 }
 
@@ -59,14 +67,14 @@
 .btn.btn--secondary {
 
 	position: relative;
-	
+
 	& img {
 		display: none;
 		position: absolute;
 		width: 2.5rem;
 		right: 0;
 		top: 50%;
-		transform: translate(0,-50%);
+		transform: translate(0, -50%);
 	}
 }
 
@@ -79,11 +87,12 @@
 .error-hint {
 	position: absolute;
 	right: 0;
-	bottom: 60%;
+	bottom: 80%;
 	padding: 5px 10px 1px;
 	color: #E50044;
 	background: #FFFFFF;
 	z-index: 5;
+
 	&:before {
 		content: '';
 		position: absolute;
@@ -94,6 +103,7 @@
 		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
 		z-index: 2;
 	}
+
 	&:after {
 		content: '';
 		position: absolute;
@@ -102,9 +112,9 @@
 		width: 0;
 		height: 0;
 		transform: rotate(30deg);
-		border-top: 18px solid #FFF; 
-		border-right: 12px solid transparent;	
-		z-index: 1;	
+		border-top: 18px solid #FFF;
+		border-right: 12px solid transparent;
+		z-index: 1;
 	}
 }
 

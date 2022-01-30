@@ -4,6 +4,7 @@
       <div class="steps__title section__title" data-show>
         <span>Как создать поздравление?</span>
       </div>
+
       <div class="steps__content">
         <div class="steps-nav">
           <div
@@ -14,22 +15,27 @@
           >
             <div class="steps-nav__item-index">1</div>
             <div class="steps-nav__item-col">
-              <div class="steps-nav__item-descr">Покупайте продукцию <br>&laquo;Коркунов&raquo;</div>
+              <div class="steps-nav__item-descr">
+                Покупайте продукцию <br />&laquo;Коркунов&raquo;
+              </div>
               <transition>
-                <div v-if="activeStep == 0" class="steps-nav__item-hidden">
-                  <a
-                    href="/"
-                    class="steps-nav__item-button btn btn--bordered"
-                  >
+                <div
+                  :style="{ display: activeStep == 0 ? 'block' : 'none' }"
+                  class="steps-nav__item-hidden"
+                >
+                  <a href="#where-to-buy" class="steps-nav__item-button btn btn--bordered">
                     Где купить?
                   </a>
-                  <VueSlickCarousel 
+                  <VueSlickCarousel
                     v-bind="settings"
-                    class="steps-production-slider visible-xs">
+                    class="steps-production-slider visible-xs"
+                  >
                     <img
                       v-for="product in production"
                       :key="product.img"
-                      :src="require(`../assets/images/production/${product.img}.png`)"
+                      :src="
+                        require(`../assets/images/production/${product.img}.png`)
+                      "
                       :srcset="
                         require(`../assets/images/production/${product.img}@2x.png`)
                       "
@@ -49,18 +55,27 @@
           >
             <div class="steps-nav__item-index">2</div>
             <div class="steps-nav__item-col">
-              <div class="steps-nav__item-descr">Сканируйте QR-код <br>на открытке из упаковки</div>
-              <transition>
-                <div v-if="activeStep == 1" class="steps-nav__item-hidden">
-                  <a
-                    href=""
-                    class="steps-nav__item-button btn btn--bordered visible-xs"
-                  >
-                    СКАНИРОВАТЬ
-                  </a>
-                  <iframe class="visible-xs" data-path="/animation/anim-2/index.html" src="" frameborder="0"></iframe>
-                </div>
-              </transition>
+              <div class="steps-nav__item-descr">
+                Сканируйте QR-код <br />на открытке из упаковки
+              </div>
+              <div
+                :style="{ display: activeStep == 1 ? 'block' : 'none' }"
+                class="steps-nav__item-hidden"
+              >
+                <!-- <a
+                  href=""
+                  class="steps-nav__item-button btn btn--bordered visible-xs"
+                >
+                  СКАНИРОВАТЬ
+                </a> -->
+                <iframe
+                  class="visible-xs"
+                  id="anim-mobile"
+                  data-path="/animation/mobile/index.html"
+                  src=""
+                  frameborder="0"
+                ></iframe>
+              </div>
             </div>
           </div>
           <div
@@ -71,16 +86,21 @@
           >
             <div class="steps-nav__item-index">3</div>
             <div class="steps-nav__item-col">
-              <div class="steps-nav__item-descr">Создавайте персонализированное поздравление своим близким!</div>
+              <div class="steps-nav__item-descr">
+                Создавайте персонализированное поздравление своим близким!
+              </div>
               <transition>
-                <div v-if="activeStep == 2" class="steps-nav__item-hidden">
+                <div
+                  :style="{ display: activeStep == 2 ? 'block' : 'none' }"
+                  class="steps-nav__item-hidden"
+                >
                   <img
-                    src="../assets/images/agutin-mobile.png"
+                    src="../assets/images/bezrukov.png"
                     alt=""
-                    class="steps-nav__agutin visible-xs"
+                    class="steps-nav__seleb visible-xs"
                   />
                   <img
-                    src="../assets/images/phone-example-mobile.png"
+                    src="../assets/images/phone-example.png"
                     alt=""
                     class="steps-nav__phone-example visible-xs"
                   />
@@ -88,6 +108,14 @@
               </transition>
             </div>
           </div>
+          <a 
+            :href="`${publicPath}docs/constructor_rules.pdf`"
+            target="_blank"
+            class="steps__rules hidden-xs"
+            data-show
+          >
+            Правила использования <br>конструктора видеопоздравления
+          </a>
         </div>
         <div class="steps-detail hidden-xs">
           <div class="steps-detail__item">
@@ -105,13 +133,18 @@
             </div>
           </div>
           <div class="steps-detail__item">
-            <iframe data-path="/animation/anim-1/index.html" src="" frameborder="0"></iframe>
+            <iframe
+              id="anim-desktop"
+              data-path="/animation/index.html"
+              src=""
+              frameborder="0"
+            ></iframe>
           </div>
           <div class="steps-detail__item">
             <img
-              src="../assets/images/hero/agutin.png"
+              src="../assets/images/bezrukov.png"
               alt=""
-              class="steps-detail__agutin"
+              class="steps-detail__seleb"
             />
             <img
               src="../assets/images/phone-example.png"
@@ -127,7 +160,9 @@
 </template>
 <script>
 import AppScrollDown from "./AppScrollDown.vue";
-import VueSlickCarousel from 'vue-slick-carousel';
+import VueSlickCarousel from "vue-slick-carousel";
+import { isMobile } from "../utils/device";
+
 export default {
   components: { AppScrollDown, VueSlickCarousel },
   data: function () {
@@ -149,9 +184,9 @@ export default {
               slidesToShow: 1,
               slidesToScroll: 1,
               centerPadding: "80px",
-            }
+            },
           },
-        ]
+        ],
       },
       production: [
         {
@@ -173,13 +208,26 @@ export default {
     showModal(name) {
       this.$modal.show(name);
     },
+    play(id) {
+      let win = document.getElementById(id).contentWindow;
+      win.postMessage("start", "*");
+    },
   },
   mounted() {
     let scroll = false;
     let $this = this;
     let stepsItems = document.querySelectorAll(".steps-detail__item");
     stepsItems[0].classList.add("_active");
-    
+    setTimeout(() => {
+      let iframes = document.querySelector(".steps").querySelectorAll("iframe");
+      for (let index = 0; index < iframes.length; index++) {
+        const element = iframes[index];
+        if (element.getAttribute("src") == "") {
+          element.setAttribute("src", element.getAttribute("data-path"));
+        }
+      }
+    }, 100);
+
     document
       .querySelector(".steps")
       .addEventListener("wheel", function (event) {
@@ -195,10 +243,10 @@ export default {
             scroll = false;
           }, 1000);
         } else if (event.deltaY > 0 && !scroll) {
-          if ($this.activeStep < $this.steps.length - 1) {
+          if ($this.activeStep < 2) {
             $this.activeStep += 1;
             scroll = true;
-          } else if ($this.activeStep === $this.steps.length - 1) {
+          } else if ($this.activeStep === 2) {
             $this.$root.$emit("nextSection");
             scroll = true;
           }
@@ -220,13 +268,10 @@ export default {
           steps[newVal].className += " _passed";
         }
         if (newVal == 1) {
-          let iframes = document.querySelector('.steps').querySelectorAll('iframe')
-          for (let index = 0; index < iframes.length; index++) {
-            const element = iframes[index];
-            if (element.getAttribute('src') == "") {
-              element.setAttribute('src',element.getAttribute('data-path'))
-            }
-            
+          if (isMobile()) {
+            this.play("anim-mobile");
+          } else {
+            this.play("anim-desktop");
           }
         }
       }, 0);
@@ -246,7 +291,7 @@ export default {
     position: relative;
     display: flex;
     flex-direction: column;
-    z-index: 99;
+    z-index: 9;
   }
   &__title {
     margin-bottom: rem(10px);
@@ -279,10 +324,12 @@ export default {
       cursor: pointer;
       &-hidden {
         position: relative;
-        height: 100%;
+        flex: auto;
       }
       &-col {
         flex: 0 1 auto;
+        display: flex;
+        flex-direction: column;
         max-width: 100%;
         width: 100%;
         iframe {
@@ -309,7 +356,7 @@ export default {
         font-family: "Bold";
         font-size: rem(14px);
         line-height: rem(19px);
-        transition: .4s;
+        transition: 0.4s;
         transform-origin: left top;
         ._active & {
           transform: scale(2);
@@ -321,7 +368,7 @@ export default {
         font-size: rem(14px);
         line-height: rem(16px);
         opacity: 0.7;
-        transition: .4s;
+        transition: 0.4s;
         transform-origin: left top;
         a,
         span {
@@ -337,7 +384,7 @@ export default {
         }
       }
     }
-    &__agutin {
+    &__seleb {
       position: absolute;
       left: -15%;
       height: 100%;
@@ -346,7 +393,7 @@ export default {
     }
     &__phone-example {
       position: absolute;
-      width: 45vw;
+      max-width: 45vw;
       bottom: 0;
       right: 0;
     }
@@ -371,12 +418,14 @@ export default {
       width: 70%;
       margin: auto 0;
     }
-    &__agutin {
+    &__seleb {
       position: absolute;
       bottom: 0;
       left: -20%;
-      height: 80vh;
-      object-fit: contain;
+      width: rem(770px);
+      height: 75vh;
+      object-fit: cover;
+      object-position: top center;
     }
     &__phone-example {
       position: absolute;
@@ -385,7 +434,7 @@ export default {
       width: rem(350px);
       transform: translateY(100%);
       transition: 0.4s;
-      transition-delay: .5s;
+      transition-delay: 0.5s;
       ._passed & {
         transform: translateY(0%);
       }
@@ -407,23 +456,31 @@ export default {
       width: 100vw;
       max-width: 100vw;
       &::before {
-        content: '';
+        content: "";
         position: absolute;
         left: 0;
         top: 0;
         height: 100%;
         width: rem(30px);
-        background: linear-gradient(to right, #9E0D53 32.86%, rgba(158, 13, 83, 0) 100%);
+        background: linear-gradient(
+          to right,
+          #9e0d53 32.86%,
+          rgba(158, 13, 83, 0) 100%
+        );
         z-index: 10;
       }
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         right: 0;
         top: 0;
         height: 100%;
         width: rem(30px);
-        background: linear-gradient(to left, #9E0D53 32.86%, rgba(158, 13, 83, 0) 100%);
+        background: linear-gradient(
+          to left,
+          #9e0d53 32.86%,
+          rgba(158, 13, 83, 0) 100%
+        );
         z-index: 10;
       }
       img {
@@ -440,7 +497,7 @@ export default {
           width: 100%;
           height: 100%;
           font-size: 0;
-          background: url('../assets/images/arrow-white.svg') no-repeat center;
+          background: url("../assets/images/arrow-white.svg") no-repeat center;
           background-size: rem(14px);
           opacity: 1;
         }
@@ -487,7 +544,6 @@ export default {
     }
   }
   @media (min-width: $sm) {
-
     &-production-slider {
       left: rem(-85px);
     }
@@ -508,7 +564,7 @@ export default {
   @media (min-width: $md) {
     padding: rem(140px) 0 0;
     background: url("../assets/images/hero/flowers.png") no-repeat right bottom !important;
-    background-size: auto rem(760px);
+    background-size: auto rem(760px) !important;
     &__list {
       display: flex;
       justify-content: space-around;
@@ -525,7 +581,7 @@ export default {
       flex: 0 0 33%;
       margin-right: 3%;
       &__item {
-        height: rem(145px);
+        height: 15vh;
         margin-bottom: rem(34px);
         padding-left: rem(70px);
         &-index {
@@ -535,8 +591,11 @@ export default {
           font-size: rem(33px);
           line-height: rem(40px);
         }
+        &-hidden {
+          padding-top: rem(30px);
+        }
         &-button {
-          margin-top: rem(40px);
+          margin-top: rem(30px);
           margin-bottom: 0;
           opacity: 0;
           ._active & {
@@ -548,7 +607,7 @@ export default {
           line-height: rem(24px);
           opacity: 1;
           ._active & {
-            transform: scale(1.7);
+            transform: scale(1.6);
           }
         }
       }
@@ -558,6 +617,18 @@ export default {
       height: rem(45px);
       font-size: rem(30px);
       line-height: 1;
+    }
+    &__rules {
+      margin-left: rem(70px);
+      color: #FFF;
+      font-size: rem(18px);
+      text-transform: uppercase;
+      text-decoration: underline;
+    }
+    &-detail {
+      &__phone-example {
+        bottom: rem(-50px);
+      }
     }
   }
 }

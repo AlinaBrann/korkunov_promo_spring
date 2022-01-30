@@ -1,28 +1,33 @@
 <template>
-  <div class="email-form">
+  <form class="email-form">
     <InputText
       placeholder="E-mail"
       class="email-form__input"
       :field="email"
       @input="email = $event"
       :class="{
-        error: validationStatus($v.email) || this.errorMessage.email,
+        error: validationStatus($v.email) || errorMessage.email,
       }"
       :error="
         (!$v.email.required && $v.email.$error
           ? 'Обязательное поле'
           : !$v.email.email && $v.email.$error
           ? 'Некорректный e-mail'
-          : '') || this.errorMessage.email
+          : '') || errorMessage.email
       "
     />
-    <button class="btn btn--send email-form__button"></button>
-  </div>
+    <button
+      type="button"
+      @click="submit()"
+      class="btn btn--send email-form__button"
+    ></button>
+  </form>
 </template>
 
 <script>
 import InputText from "./inputText.vue";
 import { required, email } from "vuelidate/lib/validators";
+
 export default {
   data: () => ({
     email: null,
@@ -61,16 +66,13 @@ export default {
         this.submitStatus = "PENDING";
 
         this.$store
-          .dispatch("SendFeedback", {
+          .dispatch("SendEntries", {
             email: this.email,
           })
           .then((r) => {
             console.log(r);
             if (r.error !== 0) {
               this.submitStatus = null;
-
-              this.$refs.recaptcha.reset();
-              this.captcha = null;
 
               let fieldsError = null;
 
@@ -83,6 +85,7 @@ export default {
               }
             } else {
               this.submitStatus = null;
+              this.$modal.hide("reminder__popup");
               this.$modal.show("succes_popup", {
                 text: "Мы оповестим Вас о начале акции.",
               });

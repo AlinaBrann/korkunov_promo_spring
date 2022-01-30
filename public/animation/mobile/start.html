@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <!-- write your code here -->
+    <script>
+
+
+    </script>
+    <!-- write your code here -->
+</head>
+
+<script>
+
+   
+    function stop() {
+        var win = document.getElementById("iframe").contentWindow;
+        console.log("stop", win);
+
+        win.postMessage("stop", "*");
+    }
+
+    function play() {
+        var win = document.getElementById("iframe").contentWindow;
+        console.log("play", win);
+
+        win.postMessage("start", "*");
+    }
+
+</script>
+
+<body>
+    <iframe id="iframe" src="./index.html" width="400" height="812" align="left"></iframe>
+    <button onclick="play()">старт</button>
+    <button onclick="stop()">стоп</button>
+
+</body>
+
+</html>

@@ -3,7 +3,7 @@
     <img src="../assets/images/logo-big.png" alt="" class="coming-soon__logo" />
     <h1 class="coming-soon__title">Поздравьте того, <br />кто важен</h1>
     <div class="coming-soon__timer-label">До старта акции осталось:</div>
-    <vac end-time="Sat, 22 Jan 2022 21:00:00 GMT" class="coming-soon__timer">
+    <vac end-time="Sat, 01 Feb 2022 10:00:00 GMT" class="coming-soon__timer">
       <div slot="process" slot-scope="{ timeObj }">
         <div class="timer">
           <div class="timer__item">
@@ -43,12 +43,14 @@ export default {
   },
   mounted() {
     this.$parent.showHeader = false;
+    this.$parent.showFooter = true;
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .coming-soon {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

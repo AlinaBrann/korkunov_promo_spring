@@ -81,27 +81,17 @@ export default {
     padding: 0 rem(10px) rem(17px);
     font-size: rem(14px);
     text-align: left;
-    font-family: "Bold";
-    color: #000;
-    &:first-child {
-      width: 20%;
-    }
-    &:nth-child(2) {
-      text-align: center;
-    }
-    &:last-child {
-      width: 45%;
-    }
+    color: #FFF;
   }
 
   td {
     font-size: rem(14px);
     padding: rem(9px) rem(10px);
     &:first-child {
-      width: 20%;
+      width: 30%;
     }
     &:last-child {
-      width: 45%;
+      width: 35%;
       text-align: left;
     }
     svg {
@@ -114,8 +104,6 @@ export default {
 
   tbody {
     tr {
-      border-bottom: 1px solid rgba(#303030, 0.2);
-      color: #a5a5a5;
       path {
         fill: #a5a5a5;
       }

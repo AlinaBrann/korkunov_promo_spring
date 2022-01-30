@@ -2,21 +2,30 @@
   <section class="hero section">
     <div class="container">
       <div class="hero__content">
-        <div class="hero__title" v-html="title"></div>
-        <div class="hero__show-example visible-xs" @click="click">Посмотреть пример персональной видеооткрытки</div>
+        <div class="hero__title">
+          Поздравьте того, кто важен <small>с Сергеем Безруковым</small>
+        </div>
+        <div class="hero__show-example visible-xs" @click="click">
+          Посмотреть пример персональной видеооткрытки
+        </div>
       </div>
     </div>
-    <img
-      class="hidden-xs hero__agutin"
-      src="../assets/images/hero/agutin.png"
-      alt=""
-    />
-    <img
-      class="visible-xs hero__agutin"
-      src="../assets/images/hero/agutin-mobile.png"
-      alt=""
-    />
+    <img class="hero__seleb" src="../assets/images/bezrukov.png" alt="" />
+
     <div class="hero-wtb">
+      <a href="#edadil" class="hero-wtb__edadil visible-xs">
+        <img src="../assets/images/edadil_logo.png" alt="" />
+        <span>Акция в Едадил</span>
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+          <path
+            d="M1.66223 1.94849L4.84973 4.71637L8.03723 1.94849"
+            stroke="#48A237"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
       <img
         class="hero-wtb__img hidden-xs"
         src="../assets/images/hero/hero-1.png"
@@ -35,9 +44,9 @@
         "
         alt=""
       />
-      <a href="" class="hero-wtb__link">Где купить?</a>
+      <a href="#where-to-buy" class="hero-wtb__link">Где купить?</a>
     </div>
-    <AppExample class="visible-xs"/>
+    <AppExample class="visible-xs" />
     <AppScrollDown text="Как создать поздравление?" />
   </section>
 </template>
@@ -48,18 +57,16 @@ import AppExample from "./AppExample.vue";
 export default {
   components: {
     AppScrollDown,
-    AppExample
-},
-  data: () => ({
-    title: "Поздравьте того, кто важен <small>с Леонидом Агутиным</small>",
-  }),
+    AppExample,
+  },
+  data: () => ({}),
   methods: {
     showModal(name) {
       this.$modal.show(name);
     },
     click() {
-        this.$emit('update', true);
-    }
+      this.$emit("update", true);
+    },
   },
   mounted() {
     // this.toCheckUpload()
@@ -67,7 +74,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .hero {
   height: 100vh;
   position: relative;
@@ -75,6 +82,7 @@ export default {
   display: flex;
   align-items: center;
   overflow: hidden;
+  z-index: 100;
   &::before {
     content: "";
     position: absolute;
@@ -82,12 +90,10 @@ export default {
     left: 0;
     width: 100%;
     height: 50%;
-    background: url('../assets/images/hero/bottom-flowers-mobile.png') no-repeat bottom;
+    background: url("../assets/images/hero/bottom-flowers-mobile.png") no-repeat
+      bottom;
     background-size: 100%;
-    z-index: 1;
-  }
-  &::after {
-    display: none !important;
+    z-index: 2;
   }
   .container {
     position: relative;
@@ -108,21 +114,21 @@ export default {
     position: relative;
     width: rem(160px);
     padding: rem(10px);
-    color: #FFF;
+    color: #fff;
     text-transform: uppercase;
     text-align: center;
     font-size: rem(11px);
     background: $yellow;
     text-decoration: underline;
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: rem(4px);
       left: rem(4px);
       width: 100%;
       height: 100%;
       display: block;
-      background: #997C4B;
+      background: #997c4b;
       z-index: -1;
     }
   }
@@ -140,24 +146,26 @@ export default {
       text-transform: none;
     }
   }
-  &__agutin {
+  &__seleb {
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: -20%;
+    bottom: -5vh;
     height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--vh, 1vh) * 85);
     // height: 97vh;
     object-fit: cover;
     object-position: bottom right;
-    z-index: 0;
+    z-index: 1;
   }
   &-wtb {
     position: absolute;
     right: 0;
     bottom: 7vh;
-    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 3;
     &__img {
-      width: 70vw;
       max-height: 60vh;
       object-fit: contain;
     }
@@ -165,7 +173,7 @@ export default {
       position: absolute;
       display: none;
       bottom: 3.7vw;
-      left: rem(18px);
+      left: rem(38px);
       letter-spacing: rem(2px);
       z-index: 1;
       color: #fff;
@@ -173,6 +181,29 @@ export default {
       line-height: 1;
       text-transform: uppercase;
       border-bottom: 1px solid #fff;
+    }
+    &__edadil {
+      display: flex;
+      align-items: center;
+      padding: rem(6px) rem(10px) rem(6px) rem(15px);
+      background: #fff;
+      color: $green;
+      * {
+        flex-shrink: 0;
+        flex-grow: 0;
+      }
+      img {
+        width: rem(22px);
+        height: rem(22px);
+        margin-right: rem(3px);
+        flex-shrink: 0;
+        flex-grow: 0;
+      }
+      span {
+        margin-right: rem(5px);
+        font-size: rem(10px);
+        white-space: nowrap;
+      }
     }
   }
   &__text {
@@ -185,21 +216,24 @@ export default {
   }
   @media (min-width: $sm) {
     background: url("../assets/images/hero/flowers.png") no-repeat right bottom !important;
-    background-size: auto rem(760px);
+    background-size: auto rem(760px) !important;
     &__title {
       font-size: rem(45px);
       line-height: rem(56px);
       margin-bottom: rem(22px);
     }
-    
+
     &__text {
       width: 80%;
     }
   }
   @media (min-width: $md) {
+    &::after {
+      display: none;
+    }
     &::before {
-      height: rem(527px);
-      background: url('../assets/images/hero/bottom-flowers.png') no-repeat;
+      height: 90%;
+      background: url("../assets/images/hero/bottom-flowers.png") no-repeat bottom;
       background-size: 100%;
       pointer-events: none;
     }
@@ -230,25 +264,47 @@ export default {
       line-height: rem(29px);
     }
 
-    &__agutin {
+    &__seleb {
       width: 61vw;
+      bottom: 0;
       height: auto;
-      max-height: 95vh;
-      height: calc(var(--vh, 1vh) * 95);
+      max-height: 90vh;
+      height: calc(var(--vh, 1vh) * 90);
       object-position: top center;
       right: 14%;
     }
     &-wtb {
-      right: rem(-85px);
+      max-height: 60vh;
+      right: -5.9vw;
       &__img {
-        width: 48vw;
+        max-width: 100%;
+        height: 100%;
       }
       &__link {
         display: inline-block;
+        left: 1.8vw;
+        bottom: 8%;
       }
     }
   }
-  @media (max-width: $xlg) {
+  @media (max-width: $sm) {
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: url("../assets/images/hero/white-line.png") no-repeat top
+        right;
+    }
+    &-wtb {
+      width: 100%;
+      &__img {
+        width: 55%;
+      }
+    }
   }
 }
 </style>

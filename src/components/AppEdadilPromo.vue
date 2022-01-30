@@ -5,14 +5,34 @@
         поздравляйте тех, кто важен <span>получайте кешбэк</span>
       </div>
       <ul class="edadil-promo__steps">
-        <li v-for="(item, i) in steps" :key="i" class="edadil-promo__item" data-show>
+        <li
+          v-for="(item, i) in steps"
+          :key="i"
+          class="edadil-promo__item"
+          data-show
+        >
           <span>{{ i + 1 }}</span>
-          {{ item }}
-          <img src="../assets/images/edadil-enter.png" v-if="i == 1" alt="">
+          <div v-html="item"></div>
+          <div v-if="i == 1" class="edadil-promo-buttons">
+            <div id="button" class="edadil-promo-buttons__button"></div>
+            <div id="scanner"></div>
+          </div>
         </li>
       </ul>
+      <div class="edadil-promo-buttons">
+        <div id="button" class="edadil-promo-buttons__button"></div>
+        <div id="scanner" class="edadil-promo-buttons__scanner"></div>
+      </div>
+      <a 
+        :href="`${publicPath}docs/rules.pdf`"
+        target="_blank"
+        class="edadil-promo__rules hidden-xs"
+        data-show
+      >
+        Правила акции едадил
+      </a>
     </div>
-    <AppScrollDown text="Призы" />
+    <AppScrollDown :text="isMobile ? 'Еженедельные призы' : 'Призы'" />
   </section>
 </template>
 
@@ -21,13 +41,18 @@ import AppScrollDown from "./AppScrollDown.vue";
 export default {
   components: { AppScrollDown },
   data: () => ({
+    publicPath: process.env.BASE_URL,
+    isMobile: null,
     steps: [
       "купите «Коркунов»",
-      "СКАНИРУЙте ЧЕК В ЕДАДИЛ",
+      "СКАНИРУЙте ЧЕК В&nbsp;ЕДАДИЛ",
       "ПОЛУЧИте КЕШБЭК",
       "ВЫИГРЫВАЙте ПРИЗЫ",
     ],
   }),
+  mounted() {
+    this.isMobile = window.innerWidth < 768;
+  },
 };
 </script>
 
@@ -36,17 +61,20 @@ export default {
   display: flex;
   align-items: center;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     height: rem(210px);
     width: 50%;
-    background: url('../assets/images/flowers-2-mobile.png') no-repeat left bottom;
+    background: url("../assets/images/flowers-2-mobile.png") no-repeat left
+      bottom;
     background-size: contain;
   }
   .container {
     position: relative;
+    display: flex;
+    flex-direction: column;
     z-index: 4;
   }
   &__title {
@@ -88,6 +116,21 @@ export default {
       margin-top: rem(10px);
     }
   }
+  &-buttons {
+    position: relative;
+    display: flex;
+    padding-top: rem(10px);
+    &__button {
+      max-width: 60%;
+    }
+  }
+  &__rules {
+    margin-left: auto;
+    color: #FFF;
+    text-transform: uppercase;
+    text-decoration: underline;
+    letter-spacing: rem(1px);
+  }
   @media (min-width: $sm) {
     &__item {
       font-size: rem(18px);
@@ -109,6 +152,7 @@ export default {
       background: url("../assets/images/flowers-1.png") no-repeat center right;
       background-size: contain;
     }
+
     &__title {
       margin-bottom: rem(50px);
       font-size: rem(26px);
@@ -136,6 +180,16 @@ export default {
       img {
         width: auto;
         margin-top: rem(40px);
+      }
+    }
+    &-buttons {
+      padding-top: rem(40px);
+      &__button {
+        max-width: 300px;
+      }
+      &__scanner {
+        position: absolute;
+        left: 100%;
       }
     }
   }

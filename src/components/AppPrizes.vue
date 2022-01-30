@@ -5,10 +5,10 @@
         поздравляйте тех, кто важен
         <span>выигрывайте призы</span>
       </h2>
-      <div 
+      <div
         class="prizes-block"
         data-show
-        :class="{'hidden-xs': type == 'main'}"
+        :class="{ 'hidden-xs': type == 'main' }"
       >
         <div class="prizes-block__title">Еженедельные призы</div>
         <div class="prizes__list">
@@ -43,10 +43,10 @@
           </div>
         </div>
       </div>
-      <div 
+      <div
         class="prizes-block"
         data-show
-        :class="{'hidden-xs': type == 'week'}"
+        :class="{ 'hidden-xs': type == 'week' }"
       >
         <div class="prizes-block__title">Главные призы</div>
         <div class="prizes__list">
@@ -82,13 +82,18 @@
         </div>
       </div>
     </div>
+    <AppScrollDown
+      :text="isMobile && type == 'week' ? 'Главные призы' : 'Где купить?'"
+    />
   </section>
 </template>
 
 <script>
+import AppScrollDown from "./AppScrollDown.vue";
 export default {
-  props: ['type'],
+  props: ["type"],
   data: () => ({
+    isMobile: null,
     prizesWeekly: [
       {
         img: "prize_1.png",
@@ -103,7 +108,7 @@ export default {
       {
         img: "prize_3.png",
         img2x: require("../assets/images/prizes/prize_3@2x.png"),
-        text: "Подписка на Яндекс.Плюс",
+        text: "Подписка на Яндекс Плюс",
       },
     ],
     prizesMain: [
@@ -120,11 +125,14 @@ export default {
       {
         img: "prize_6.png",
         img2x: require("../assets/images/prizes/prize_6@2x.png"),
-        text: "<span>к 8 марта</span> <br>2 сертификатана покупку смартфонов",
+        text: "<span>к 8 марта</span> <br>2 сертификата на покупку смартфонов",
       },
     ],
   }),
-  components: {},
+  mounted() {
+    this.isMobile = window.innerWidth < 768;
+  },
+  components: { AppScrollDown },
 };
 </script>
 
@@ -132,18 +140,18 @@ export default {
 .prizes {
   position: relative;
   display: flex;
-  align-items: center;
   z-index: 1;
   padding-top: rem(74px);
   overflow: hidden;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     height: rem(320px);
     width: 100%;
-    background: url('../assets/images/prizes/background-mobile.png') no-repeat left bottom;
+    background: url("../assets/images/prizes/background-mobile.png") no-repeat
+      left bottom;
     background-size: contain;
   }
   .container {
@@ -151,7 +159,7 @@ export default {
     z-index: 2;
   }
   &__title {
-    margin-bottom: rem(50px);
+    margin-bottom: rem(30px);
     text-align: left;
     color: #fff;
     letter-spacing: rem(1px);
@@ -206,7 +214,7 @@ export default {
           left: 0%;
           width: 100%;
           height: 100%;
-          background: #FFF;
+          background: #fff;
           border-radius: 50%;
           z-index: -1;
         }
@@ -216,7 +224,7 @@ export default {
       flex: auto;
     }
     &-text {
-      color: #FFF;
+      color: #fff;
       font-family: "Demi";
       font-size: rem(16px);
       line-height: rem(20px);
@@ -236,9 +244,9 @@ export default {
     margin-bottom: rem(20px);
   }
 
-
   @media (min-width: $sm) {
     padding: rem(85px) 0 rem(20px);
+    align-items: center;
     &::before {
       width: rem(411px);
       height: rem(538px);
@@ -253,7 +261,6 @@ export default {
     }
     &__item-img-wrapper {
       height: rem(143px);
-     
     }
   }
   @media (max-width: $md) {
@@ -269,7 +276,7 @@ export default {
         text-align: left;
         font-size: rem(16px);
         text-transform: none;
-        color: #FFF;
+        color: #fff;
       }
     }
     &__list {
@@ -288,7 +295,8 @@ export default {
       }
       &-text {
         font-size: rem(14px);
-        font-family: "Reg";
+        font-family: "Light";
+        font-weight: 600;
       }
     }
   }

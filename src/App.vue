@@ -1,9 +1,10 @@
 <template>
-  <div id="app">
+  <div id="app" class="loading">
     <Header v-if="showHeader" />
-    <div class="app-content">
+    <div class="app-content loading">
       <router-view />
     </div>
+    <AppFooter v-if="showFooter" />
     <AppExample v-if="showExample" class="hidden-xs" />
     <Feedback />
     <ReminderPopup />
@@ -11,6 +12,7 @@
     <CommonError />
     <SuccesPopup />
     <TemporarilyUnavailable />
+    <VideoPopup />
   </div>
 </template>
 <script>
@@ -25,6 +27,8 @@ import SuccessFeedback from "@/components/modals/successFeedback.vue";
 import CommonError from "@/components/modals/commonError.vue";
 import ReminderPopup from "./components/modals/reminderPopup.vue";
 import SuccesPopup from "./components/modals/succesPopup.vue";
+import AppFooter from "./components/AppFooter.vue";
+import VideoPopup from "./components/modals/videoPopup.vue";
 
 export default {
   components: {
@@ -36,10 +40,13 @@ export default {
     ReminderPopup,
     SuccesPopup,
     AppExample,
+    AppFooter,
+    VideoPopup,
   },
   data: function () {
     return {
       showHeader: true,
+      showFooter: false,
       showExample: false,
       network: null,
     };
@@ -64,8 +71,8 @@ export default {
     },
     setHeight() {
       var vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    },
   },
   mounted() {
     let t = this;
@@ -74,7 +81,10 @@ export default {
     this.checkAuth(t);
     // this.$modal.show("reminder__popup");
     this.setHeight();
-    window.addEventListener('resize', this.setHeight);
+    window.addEventListener("resize", this.setHeight);
+    setTimeout(() => {
+      document.querySelector(".app-content").classList.remove("loading");
+    }, 600);
   },
   watch: {
     $route: {
@@ -82,6 +92,16 @@ export default {
         document.title = to.meta.title || "";
       },
       immediate: true,
+    },
+    "$route.path"() {
+      if (
+        this.$route.path == "constructor" ||
+        this.$route.path == "video-greeting"
+      ) {
+        this.showHeader = false;
+      } else {
+        this.showHeader = true;
+      }
     },
   },
 };
@@ -112,6 +132,14 @@ export default {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "Magnolia";
+  src: url("./assets/fonts/Magnolia-Script.woff") format("woff"),
+    url("./assets/fonts/Magnolia-Script.eot") format("eot"),
+    url("./assets/fonts/Magnolia-Script.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
 
 .app-content {
   flex: 1;
@@ -132,11 +160,18 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #000;
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
   min-width: 320px;
 }
 
+.app-content {
+  opacity: 1;
+  transition: opacity 0.5s;
+  &.loading {
+    opacity: 0;
+  }
+}
 #nav {
   padding: 30px;
 

@@ -61,15 +61,23 @@ export default {
     resize: none;
     min-height: rem(160px);
     width: 100%;
-    font-size: rem(14px);
-    border: 1px solid #a4a4a4;
+    font-size: rem(24px);
+    border: 1px solid $yellow;
+    color: #1a1511;
     background: #ffffff;
     padding: rem(15px) rem(15px);
     transition: all 0.3s ease-in-out;
+    &::placeholder {
+      color: $yellow;
+      transition: 0.4s;
+    }
   }
   &__field:focus {
-    border-color: $pink;
+    border-color: $red;
     outline: none;
+    &::placeholder {
+      opacity: 0;
+    }
   }
   &__caption {
     font-size: rem(14px);
@@ -77,6 +85,12 @@ export default {
     color: #000;
     text-transform: none;
     margin-bottom: rem(3px);
+  }
+  @media (max-width: $sm) {
+    &__field {
+      min-height: rem(63px);
+      font-size: rem(10px);
+    }
   }
 }
 </style>

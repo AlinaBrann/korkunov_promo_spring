@@ -39,7 +39,7 @@ export default {
 <style lang="scss" scoped>
 .scroll-down {
   position: absolute;
-  
+
   left: 50%;
   display: flex;
   flex-direction: column;
@@ -55,22 +55,27 @@ export default {
   path {
     animation: arrow 2s ease-in infinite forwards;
     &:nth-child(1) {
-      animation-delay: .5s;
+      animation-delay: 0.5s;
     }
   }
-  
+
   @media (max-width: $sm) {
     width: 100%;
     padding-bottom: rem(12px);
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
       height: rem(94px);
       display: block;
-      background: linear-gradient(to top, #4D0A24 2.53%, rgba(152, 31, 78, 0.38) 78.2%, rgba(152, 31, 78, 0) 99.9%);
+      background: linear-gradient(
+        to top,
+        #4d0a24 2.53%,
+        rgba(152, 31, 78, 0.38) 78.2%,
+        rgba(152, 31, 78, 0) 99.9%
+      );
       z-index: -1;
     }
   }

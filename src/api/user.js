@@ -75,6 +75,16 @@ export function sendFeedback(data) {
   });
 }
 
+export function sendEntries(data) {
+  const options = qs.stringify(data);
+
+  return request({
+    url: "/entries",
+    method: "post",
+    data: options,
+  });
+}
+
 export function uploadImage(data) {
   const options = qs.stringify(data);
 

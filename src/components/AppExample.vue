@@ -10,11 +10,13 @@
       </button>
       <div class="example__wrapper">
         <div class="example__title">пример персонального поздравления</div>
-        <video
-          class="example__video"
-          src=""
-          poster="../assets/images/video-preview.jpg"
-        ></video>
+        <img
+          @click="$modal.show('video_popup')"
+          class="example__video-trigger"
+          src="../assets/images/video-preview.png"
+          alt=""
+        />
+
         <img
           class="example__img hidden-xs"
           src="../assets/images/example-img.png"
@@ -36,19 +38,30 @@
 export default {
   data: () => ({
     showPopup: false,
+    playing: false,
   }),
   methods: {
     togglePopup() {
       this.showPopup = !this.showPopup;
     },
-    setValue: function(value) {
-        this.showPopup = value;
-        console.log(value);
-    }
+    pause() {
+      let videoElement = document.getElementById("video");
+      videoElement.pause();
+      this.playing = false;
+    },
+    play() {
+      let videoElement = document.getElementById("video");
+      videoElement.play();
+      this.playing = true;
+    },
+    setValue(value) {
+      this.showPopup = value;
+      console.log(value);
+    },
   },
-  created: function() {
-    this.$parent.$on('update', this.setValue);
-  }
+  created: function () {
+    this.$parent.$on("update", this.setValue);
+  },
 };
 </script>
 
@@ -61,7 +74,11 @@ export default {
   height: 100%;
   pointer-events: none;
   z-index: 10000;
-
+  opacity: 0;
+  .fp-viewing-steps &,
+  .fp-viewing-about & {
+    opacity: 1;
+  }
   &__shadow {
     display: block;
     width: 100%;
@@ -78,6 +95,7 @@ export default {
   }
   &._open {
     pointer-events: all;
+    opacity: 1;
   }
   &__body {
     position: absolute;
@@ -89,7 +107,7 @@ export default {
     background: #fff7f4 url("../assets/images/popup-background.png") no-repeat
       bottom center;
     background-size: 100%;
-    transform: translateX(100%);
+    transform: translateX(101%);
     transition: 0.4s;
     ._open & {
       transition-delay: 0.4s;
@@ -166,7 +184,7 @@ export default {
     color: $red;
     text-transform: uppercase;
   }
-  &__video {
+  &__video-trigger {
     width: calc(100% - #{rem(38px)});
     margin-left: rem(16px);
   }
@@ -196,7 +214,7 @@ export default {
       width: 50vw;
       transform: translateX(calc(100% - #{rem(80px)}));
     }
-    &__video {
+    &__video-trigger {
       width: 90%;
       margin-left: 0;
     }

@@ -8,8 +8,15 @@
     padding-left: rem(15px);
     padding-right: rem(15px);
   }
-  @media(min-width: $lg) {
+  @media(min-width: $md) {
+    max-width: 90%;
+  }
+  
+  @media(min-width: $xlg) {
     max-width: rem(1310px);
+  }
+  @media(min-width: $lg) and (max-height: 830px) {
+    max-width: 90%;
   }
 }
 .hidden-xs {

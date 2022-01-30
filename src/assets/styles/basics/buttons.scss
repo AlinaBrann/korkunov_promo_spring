@@ -6,7 +6,7 @@
     max-width: 100%;
     cursor: pointer;
     text-align: center;
-    
+    font-family: "Demi";
     font-size: rem(31px);
     padding: 0 rem(23px) rem(2px);
     line-height: rem(60px);
@@ -23,7 +23,7 @@
     &--primary {
         color: #FFF;
         background: $yellow;
-        
+        text-transform: uppercase;
         border: 2px solid $yellow;
         // min-width: 145px;
     }
@@ -142,6 +142,10 @@
             background: $yellow;
         }
     }
+    &--no-border {
+        text-transform: uppercase;
+        font-size: rem(25px);
+    }
     @media (max-width: $sm) {
         min-width: rem(144px);
         height: rem(27px);
@@ -150,6 +154,14 @@
         &--lg {
             font-size: 18px;
             padding: 16px 25px 10px;
+        }
+        &--sm {
+            min-width: rem(85px);
+            height: rem(26px);
+            line-height: rem(24px);
+            padding: 0 rem(10px);
+            font-size: rem(8px);
+            letter-spacing: .5px;
         }
         &--send {
             width: rem(39px);
@@ -166,5 +178,11 @@
         &--bordered {
             border-width: rem(2px);
         }
+    }
+    @media (min-width: 1100px) and (max-height: 830px) and (orientation: landscape) {
+        height: rem(50px);
+        font-size: rem(20px);
+        padding: 0 rem(19px) rem(2px);
+        line-height: rem(45px);
     }
 }

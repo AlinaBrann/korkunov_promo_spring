@@ -58,19 +58,19 @@ export default {
   }
 
   &__custom {
-    min-width: rem(26px);
-    width: rem(26px);
-    height: rem(26px);
+    min-width: rem(21px);
+    width: rem(21px);
+    height: rem(21px);
     background: #ffffff;
     border: 1px solid #a4a4a4;
-    background-size: rem(19px);
+    background-size: rem(15px);
     background-repeat: no-repeat;
     background-position: center;
     transition: all 0.3s ease-in-out;
   }
 
   &__caption {
-    font-size: rem(14px);
+    font-size: rem(12px);
     line-height: rem(17px);
     margin-top: 1px;
     margin-left: rem(18px);
@@ -87,6 +87,8 @@ export default {
     }
     &__caption {
       margin-left: rem(29px);
+      font-size: rem(14px);
+      line-height: rem(17px);
     }
   }
 }

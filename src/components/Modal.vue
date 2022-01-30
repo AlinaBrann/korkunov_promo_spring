@@ -74,6 +74,7 @@ export default {
   height: auto !important;
   width: auto !important;
   min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   justify-content: center;
   overflow: visible !important;
   display: flex;
@@ -93,7 +94,7 @@ export default {
   justify-content: center;
   width: rem(440px);
   max-width: 88%;
-  padding: rem(65px) rem(15px) rem(45px);
+  padding: rem(50px) rem(15px) rem(45px);
   background: #fff7f4;
   overflow: hidden;
   &-check_photo {
@@ -137,6 +138,10 @@ export default {
     background-position: center;
     transition: 0.4s;
     z-index: 1;
+    .modal-video_popup & {
+      top: rem(-48px);
+      right: 0;
+    }
   }
   &__content {
     position: static;
@@ -173,6 +178,10 @@ export default {
   }
   &-signup {
     width: rem(758px);
+  }
+  &-video_popup {
+    padding: 0 !important;
+    overflow: visible;
   }
   &__another-option {
     margin: rem(15px) 0 rem(27px);
@@ -268,6 +277,10 @@ export default {
       width: rem(48px);
       height: rem(48px);
       background-size: rem(26px);
+      .modal-video_popup & {
+        top: rem(-55px);
+        right: rem(-55px);
+      }
     }
     &__subtitle {
       margin-bottom: 0;
