@@ -1,48 +1,32 @@
 <template>
   <div id="app">
-    <Header v-if="showHeader" />
     <div class="app-content">
       <router-view />
     </div>
-    <AppExample v-if="showExample" class="hidden-xs" />
-    <Feedback />
-    <ReminderPopup />
-    <SuccessFeedback />
     <CommonError />
     <SuccesPopup />
     <TemporarilyUnavailable />
+    <VideoPopup />
   </div>
 </template>
 <script>
-import AppExample from "./components/AppExample.vue";
-import Header from "@/components/AppHeader.vue";
-import Feedback from "@/components/modals/feedback.vue";
 import TemporarilyUnavailable from "@/components/modals/temporarilyUnavailable.vue";
-
-import SuccessFeedback from "@/components/modals/successFeedback.vue";
 
 //import UploadCheck from "@/components/modals/uploadCheck.vue";
 import CommonError from "@/components/modals/commonError.vue";
-import ReminderPopup from "./components/modals/reminderPopup.vue";
 import SuccesPopup from "./components/modals/succesPopup.vue";
+import AppFooter from "./components/AppFooter.vue";
+import VideoPopup from "./components/modals/videoPopup.vue";
 
 export default {
   components: {
-    Header,
-    Feedback,
-    SuccessFeedback,
     CommonError,
     TemporarilyUnavailable,
-    ReminderPopup,
     SuccesPopup,
-    AppExample,
+    VideoPopup,
   },
   data: function () {
-    return {
-      showHeader: true,
-      showExample: false,
-      network: null,
-    };
+    return {};
   },
   methods: {
     checkAuth(t) {
@@ -64,8 +48,8 @@ export default {
     },
     setHeight() {
       var vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    },
   },
   mounted() {
     let t = this;
@@ -74,7 +58,7 @@ export default {
     this.checkAuth(t);
     // this.$modal.show("reminder__popup");
     this.setHeight();
-    window.addEventListener('resize', this.setHeight);
+    window.addEventListener("resize", this.setHeight);
   },
   watch: {
     $route: {
@@ -112,6 +96,14 @@ export default {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "Magnolia";
+  src: url("./assets/fonts/Magnolia-Script.woff") format("woff"),
+    url("./assets/fonts/Magnolia-Script.eot") format("eot"),
+    url("./assets/fonts/Magnolia-Script.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
 
 .app-content {
   flex: 1;
@@ -128,7 +120,7 @@ export default {
 #app {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #000;

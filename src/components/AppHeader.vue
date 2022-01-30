@@ -11,37 +11,54 @@
         </router-link>
         <div class="header__inner">
           <div class="header__hamburger" @click="showBurger()">
-            <svg viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 1H1" stroke="#9E0D53" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M19 7H7" stroke="#9E0D53" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M19 13H5" stroke="#9E0D53" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg
+              viewBox="0 0 20 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M19 1H1"
+                stroke="#9E0D53"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M19 7H7"
+                stroke="#9E0D53"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M19 13H5"
+                stroke="#9E0D53"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </div>
           <div class="header__nav">
             <a
               href="#about"
               class="header__nav-link"
-              :class="{_active: $route.hash == '#about'}"
+              :class="{ _active: $route.hash == '#about' }"
             >
               Главная
             </a>
             <a
               href="#steps"
               class="header__nav-link"
-              :class="{_active: $route.hash == '#steps'}"
+              :class="{ _active: $route.hash == '#steps' }"
             >
               Как создать поздравление?
             </a>
-            <a
-              href="#"
-              class="header__nav-link"
-            >
-              Где купить?
-            </a>
+            <a href="#" class="header__nav-link"> Где купить? </a>
             <a
               href="#edadil"
               class="header__nav-link _accent"
-              :class="{_active: $route.hash == '#edadil'}"
+              :class="{ _active: $route.hash == '#edadil' }"
             >
               <img src="../assets/images/edadil_logo.png" alt="" />
               <span>Акция в Едадил</span>
@@ -50,13 +67,12 @@
         </div>
         <div class="header__shadow" @click="showBurger()"></div>
         <div class="header__menu_mob">
-          
           <button class="header__menu_mob-close" @click="showBurger()"></button>
           <a
             href="#about"
             @click="showBurger()"
             class="header__nav-link"
-            :class="{_active: $route.hash == '#about'}"
+            :class="{ _active: $route.hash == '#about' }"
           >
             Главная
           </a>
@@ -64,38 +80,34 @@
             href="#steps"
             @click="showBurger()"
             class="header__nav-link"
-            :class="{_active: $route.hash == '#steps'}"
+            :class="{ _active: $route.hash == '#steps' }"
           >
             Как создать поздравление?
           </a>
-          <a
-            href="#"
-            @click="showBurger()"
-            class="header__nav-link"
-          >
+          <a href="#" @click="showBurger()" class="header__nav-link">
             Где купить?
           </a>
           <a
             href="#edadil"
             @click="showBurger()"
             class="header__nav-link _accent"
-            :class="{_active: $route.hash == '#edadil'}"
+            :class="{ _active: $route.hash == '#edadil' }"
           >
             <img src="../assets/images/edadil_logo.png" alt="" />
             <span>Акция в Едадил</span>
           </a>
-          <div class="header__show-example" @click="click(),showBurger()">Посмотреть пример персональной видеооткрытки</div>
+          <div class="header__show-example" @click="click(), showBurger()">
+            Посмотреть пример персональной видеооткрытки
+          </div>
         </div>
       </div>
     </div>
-    <AppExample class="visible-xs"/>
   </header>
 </template>
 
 <script>
-import AppExample from './AppExample.vue'
 export default {
-  components: { AppExample },
+  components: {},
   data() {
     return {
       publicPath: process.env.BASE_URL,
@@ -143,8 +155,8 @@ export default {
       else header.classList.remove("header--mob_active");
     },
     click() {
-      this.$emit('update', true);
-    }
+      this.$emit("update", true);
+    },
   },
   mounted() {},
 };
@@ -168,7 +180,6 @@ export default {
     width: 100%;
   }
   &.header--mob_active {
-
     .header__menu_mob {
       transform: translateX(0%);
     }
@@ -198,13 +209,13 @@ export default {
     margin-bottom: rem(15px);
     font-size: rem(14px);
     line-height: 1.4;
-    color: #9E0D53;
+    color: #9e0d53;
     transition: all 0.3s ease-in-out;
 
     &.router-link-exact-active,
     &._active {
-      color: #FFF;
-      background: #9E0D53;
+      color: #fff;
+      background: #9e0d53;
     }
     &._accent {
       display: flex;
@@ -213,7 +224,7 @@ export default {
       margin-bottom: rem(20px);
       padding: rem(10px) rem(16px);
       margin-left: 0;
-      background: #FFF;
+      background: #fff;
       color: #48a237;
       img {
         height: rem(18px);
@@ -221,7 +232,7 @@ export default {
       }
       &._active {
         background: #48a237;
-        color: #FFF;
+        color: #fff;
       }
     }
   }
@@ -248,7 +259,7 @@ export default {
     }
     path {
       ._small & {
-        stroke: #FFF;
+        stroke: #fff;
       }
     }
   }
@@ -291,7 +302,7 @@ export default {
     padding-top: 0;
     transform: translateX(100%);
     padding-bottom: rem(25px);
-    transition: .4s;
+    transition: 0.4s;
     z-index: 10;
     .btn--default {
       background-color: transparent;
@@ -305,7 +316,6 @@ export default {
     .btn:last-child {
       margin-top: 20px;
     }
-    
   }
   &__shadow {
     position: absolute;
@@ -333,7 +343,8 @@ export default {
     height: rem(34px);
     flex-shrink: 0;
     margin-bottom: rem(30px);
-    background: #ffffff url("../assets/images/close_icon-mobile.svg") no-repeat center;
+    background: #ffffff url("../assets/images/close_icon-mobile.svg") no-repeat
+      center;
     background-size: rem(16px);
   }
   @media (min-width: $sm) {
@@ -344,9 +355,9 @@ export default {
       max-width: 45%;
       box-shadow: -5px 4px 10px rgba(0, 0, 0, 0.15);
     }
-     &__menu_mob-close {
-       background-image: url('../assets/images/close_icon.svg');
-     }
+    &__menu_mob-close {
+      background-image: url("../assets/images/close_icon.svg");
+    }
   }
   @media (min-width: $md) {
     &__row {
@@ -355,9 +366,9 @@ export default {
     &__logo {
       height: rem(120px);
       transform-origin: left top;
-      transition: .4s;
+      transition: 0.4s;
       ._small & {
-        transform: scale(.47);
+        transform: scale(0.47);
       }
     }
     &__nav {
@@ -382,10 +393,10 @@ export default {
       border-bottom: 1px solid transparent;
       transition: all 0.3s ease-in-out;
       &.router-link-exact-active,
-      &._active  {
+      &._active {
         background: none;
-        color: #FFF;
-        border-color: #FFF;
+        color: #fff;
+        border-color: #fff;
       }
       &._accent {
         width: auto;
@@ -405,8 +416,7 @@ export default {
           margin-right: rem(6px);
         }
         &._active {
-          b
-          span {
+          b span {
             border-bottom-color: #48a237;
           }
         }
@@ -427,8 +437,6 @@ export default {
     }
   }
 }
-
-
 
 .header__menu_mob.active {
   display: flex !important;

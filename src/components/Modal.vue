@@ -120,10 +120,6 @@ export default {
     bottom: 0;
     transform: rotate(180deg);
   }
-  &-reminder__popup {
-    padding-top: rem(50px);
-    padding-bottom: rem(45px);
-  }
   &__close {
     cursor: pointer;
     position: absolute;
@@ -174,37 +170,13 @@ export default {
   &-signup {
     width: rem(758px);
   }
-  &__another-option {
-    margin: rem(15px) 0 rem(27px);
-    font-size: rem(14px);
-    line-height: rem(17px);
-    text-align: center;
-    a {
-      color: $pink;
-      border-bottom: 1px solid currentColor;
-      &:hover {
-        border-color: transparent;
-      }
-    }
-  }
-  &__list {
-    width: 100%;
-    margin: auto;
-    &-item {
-      position: relative;
-      padding-left: rem(33px);
-      margin-bottom: rem(20px);
-      &:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: rem(8px);
-        width: rem(8px);
-        height: rem(8px);
-        border-radius: 50%;
-        background: $yellow;
-      }
-    }
+  &-video_popup {
+    padding: 0;
+    transform: rotate(-90deg);
+    width: calc(var(--vh, 1vh) * 100);
+    flex-shrink: 0;
+    max-width: 100vh;
+    height: 100vw;
   }
   &-success {
     &__title {

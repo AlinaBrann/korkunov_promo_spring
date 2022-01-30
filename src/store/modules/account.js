@@ -18,7 +18,11 @@ import {
   searchWinners,
   getPrizes,
   sendFeedback,
+  sendEntries,
   uploadImage,
+  createCongratulation,
+  completeCongratulation,
+  viewCongratulation,
 } from "../../api/user";
 import { getToken, setToken, removeToken } from "../../utils/auth";
 import router from "../../router";
@@ -88,6 +92,9 @@ const account = {
       return (async () => sendFeedback(data))();
     },
 
+    SendEntries({ commit }, data) {
+      return (async () => sendEntries(data))();
+    },
     UploadImage({ commit }, data) {
       return (async () => uploadImage(data))();
     },
@@ -122,7 +129,16 @@ const account = {
     SearchWinners({ commit }, data) {
       return (async () => searchWinners(data))();
     },
-
+    CreateCongratulation({ commit }, data) {
+      return (async () => createCongratulation(data))();
+    },
+    CompleteCongratulation({ commit }, data) {
+      return (async () => completeCongratulation(data))();
+    },
+    ViewCongratulation({ commit }, data) {
+      return (async () => viewCongratulation(data))();
+    },
+    
     SignUp({ commit }, data) {
       return (async () => signUp(data))();
     },

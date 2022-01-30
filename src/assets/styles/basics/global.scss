@@ -166,3 +166,46 @@ body {
     transition-delay: $i / 2.5 + s;
   }
 }
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
+
+.tooltip {
+  width: rem(140px);
+  padding-top: rem(5px);
+  z-index: 10;
+  &-arrow {
+    position: relative;
+    display: block;
+    width: rem(11px);
+    height: rem(9px);
+    margin: auto;
+    margin-bottom: rem(-2px);
+    background: url('../images/tooltip-arrow.svg') no-repeat center;
+    background-size: contain;
+    z-index: 1;
+  }
+  &-inner {
+    padding: rem(5px) rem(10px);
+    color: $yellow;
+    background: #FFF;
+    font-family: "Bold";
+    font-size: rem(9px);
+    border: 1px solid $yellow;
+    letter-spacing: .5px;
+  }
+  &[x-placement^="bottom-end"] {
+    margin-right: 60px;
+    text-align: center;
+    .tooltip-arrow {
+      margin-right: rem(40px);
+    }
+  }
+}
+
+.info-button__wrapper {
+  max-width: 100% !important;
+}

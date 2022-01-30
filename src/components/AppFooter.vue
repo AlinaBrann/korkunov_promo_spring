@@ -45,7 +45,7 @@
       </div>
       <p class="footer__copyright">
         {{
-          "© 2021 Mars, Incorporated и ее филиалы. Все права защищены."
+          "© 2022 Mars, Incorporated и ее филиалы. Все права защищены."
             | typograf
         }}
       </p>
@@ -84,7 +84,7 @@ export default {
 .footer {
   padding: rem(70px) 0 rem(50px);
   text-align: left;
-  background: #f6f6f6;
+  background: #fff7f4;
 
   .container {
     max-width: rem(970px);

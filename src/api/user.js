@@ -75,6 +75,16 @@ export function sendFeedback(data) {
   });
 }
 
+export function sendEntries(data) {
+  const options = qs.stringify(data);
+
+  return request({
+    url: "/entries",
+    method: "post",
+    data: options,
+  });
+}
+
 export function uploadImage(data) {
   const options = qs.stringify(data);
 
@@ -82,5 +92,34 @@ export function uploadImage(data) {
     url: "/cropImage",
     method: "post",
     data: options,
+  });
+}
+
+export function createCongratulation(data) {
+  const options = qs.stringify(data);
+
+  return request({
+    url: "/createCongratulation",
+    method: "post",
+    data: options,
+  });
+}
+
+export function completeCongratulation(data) {
+  const options = qs.stringify(data);
+
+  return request({
+    url: "/completeCongratulation",
+    method: "post",
+    data: options,
+  });
+}
+
+export function viewCongratulation(data) {
+  const options = qs.stringify(data);
+
+  return request({
+    url: "/viewCongratulation?" + options,
+    method: "get",
   });
 }
