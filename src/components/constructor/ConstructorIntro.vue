@@ -22,7 +22,7 @@
         >Посмотреть поздравление</router-link
       >
       <a
-        :href="`${publicPath}docs/rules.pdf`"
+        :href="`${publicPath}docs/constructor_rules.pdf`"
         target="_blank"
         class="constructor-intro__rules"
       >
