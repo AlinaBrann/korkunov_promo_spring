@@ -594,8 +594,11 @@ export default {
         &-hidden {
           padding-top: rem(30px);
         }
-        &-button {
+        &-button.btn {
           margin-top: rem(30px);
+          height: 6vh !important;
+          line-height: 5.3vh !important;
+          font-size: 2.5vh;
           margin-bottom: 0;
           opacity: 0;
           ._active & {

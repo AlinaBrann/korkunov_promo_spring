@@ -1,4 +1,4 @@
-# Hvostiki
+# Korkunov
 
 ## Project setup
 ```

@@ -145,7 +145,7 @@ export default {
 
 <style lang="scss" scoped>
 .faq {
-  padding-top: rem(74px);
+  padding-top: 15vh;
   &__row {
     display: flex;
     flex-direction: column;

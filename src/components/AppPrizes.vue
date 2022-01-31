@@ -141,7 +141,7 @@ export default {
   position: relative;
   display: flex;
   z-index: 1;
-  padding-top: rem(74px);
+  padding-top: 15vh;
   overflow: hidden;
   &::before {
     content: "";
@@ -265,7 +265,7 @@ export default {
   }
   @media (max-width: $md) {
     &-block {
-      padding: rem(20px) rem(19px) rem(20px) rem(30px);
+      padding: rem(20px) rem(19px) rem(20px) rem(20px);
       flex-direction: column;
       align-items: flex-start;
       border: rem(3px) solid $yellow;
@@ -289,8 +289,8 @@ export default {
       }
       &-img {
         &-wrapper {
-          width: rem(71px);
-          height: rem(71px);
+          width: rem(69px);
+          height: rem(69px);
         }
       }
       &-text {

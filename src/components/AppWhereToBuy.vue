@@ -80,7 +80,7 @@ export default {
 
 <style lang="scss" scoped>
 .where-to-buy {
-  padding-top: rem(74px);
+  padding-top: 15vh;
   .container {
     position: relative;
     z-index: 10;

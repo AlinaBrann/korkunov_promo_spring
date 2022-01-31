@@ -59,7 +59,7 @@ export default {
 <style lang="scss" scoped>
 .edadil-promo {
   display: flex;
-  align-items: center;
+  padding-top: 15vh;
   &::before {
     content: "";
     position: absolute;
