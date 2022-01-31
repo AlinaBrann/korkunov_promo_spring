@@ -3,7 +3,7 @@
     title="шаг 1. Какое чувство&nbsp;Вы хотите передать к&nbsp;получателю поздравления? Выберите один вариант"
     back="Назад"
   >
-    <VueSlickCarousel v-bind="settings" class="constructor-step__slider">
+    <VueSlickCarousel v-bind="settings" class="constructor-step__slider" @afterChange="selectBackground">
       <div
         v-for="(item, i) in backgrounds"
         :key="i"
@@ -69,7 +69,7 @@ export default {
       this.$root.$emit("nextStep");
     },
     selectBackground(idx) {
-      this.currentBackground = idx;
+      this.currentBackground = idx + 1;
       console.log(idx);
     },
     submit() {

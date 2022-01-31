@@ -18,6 +18,7 @@
           id="code"
           v-model="code"
           placeholder="Пин-код"
+          required
         />
       </div>
     </div>
