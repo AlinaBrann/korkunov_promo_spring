@@ -1,7 +1,7 @@
 <template>
   <constructor-step
     title="шаг 2. предпросмотр видеопоздравления"
-    back="выбрать другой фон"
+    back="назад"
   >
     <div class="constructor-step__video-wrapper">
       <video
@@ -27,7 +27,7 @@
         <p class="constructor-step__first-options-text">
           Хотите сделать видеопоздравление персональным?
         </p> -->
-    <!-- <button 
+    <!-- <button
           @click="goToNext()"
           class="constructor-step__first-options-btn btn btn--no-border"
         >
