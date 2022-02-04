@@ -133,6 +133,10 @@ export default {
     background-position: center;
     transition: 0.4s;
     z-index: 1;
+    .modal-video_popup & {
+      top: rem(-48px);
+      right: 0;
+    }
   }
   &__content {
     position: static;
@@ -171,12 +175,8 @@ export default {
     width: rem(758px);
   }
   &-video_popup {
-    padding: 0;
-    transform: rotate(-90deg);
-    width: calc(var(--vh, 1vh) * 100);
-    flex-shrink: 0;
-    max-width: 100vh;
-    height: 100vw;
+    padding: 0 !important;
+    overflow: visible;
   }
   &-success {
     &__title {

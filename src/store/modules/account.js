@@ -22,6 +22,7 @@ import {
   uploadImage,
   createCongratulation,
   completeCongratulation,
+  completeCongratulation2,
   viewCongratulation,
 } from "../../api/user";
 import { getToken, setToken, removeToken } from "../../utils/auth";
@@ -134,6 +135,9 @@ const account = {
     },
     CompleteCongratulation({ commit }, data) {
       return (async () => completeCongratulation(data))();
+    },
+    CompleteCongratulation2({ commit }, data) {
+      return (async () => completeCongratulation2(data))();
     },
     ViewCongratulation({ commit }, data) {
       return (async () => viewCongratulation(data))();

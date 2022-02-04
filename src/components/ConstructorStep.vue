@@ -25,7 +25,7 @@ export default {
       this.$root.$emit("goBack");
     },
     routeTo(to) {
-      this.$router.push(to);
+      this.$router.push({ path: to});
     },
   },
 };
@@ -137,7 +137,7 @@ export default {
       background-size: cover;
       &._play {
         background: url("../assets/images/constructor/overlay-2.svg") no-repeat
-        center;
+          center;
         background-size: cover;
       }
     }
@@ -152,8 +152,9 @@ export default {
     text-align: center;
     font-weight: 800;
   }
-  &__pincode {
+  &__field {
     &-block {
+      position: relative;
       margin-bottom: rem(30px);
       p {
         margin-bottom: rem(16px);
@@ -165,20 +166,29 @@ export default {
       }
     }
     &-wrapper {
+      position: relative;
       display: flex;
       width: 100%;
       height: rem(34px);
+      padding-right: rem(4px);
       justify-content: space-between;
       align-items: center;
-      padding: rem(4px) rem(4px) rem(4px) rem(16px);
       background: #fff;
+      .error-hint {
+        bottom: 110%;
+        z-index: 10;
+      }
     }
     &-code {
       display: block;
       color: $yellow;
+      width: 100%;
+      height: rem(34px);
       font-size: rem(10px);
+      padding: rem(4px) rem(4px) rem(4px) rem(16px);
       border: none !important;
       outline: none !important;
+      z-index: 1;
       &::placeholder {
         color: $yellow;
         letter-spacing: 1px;
@@ -190,6 +200,11 @@ export default {
       flex: 0;
       &:hover {
         background: $yellow;
+      }
+      ._email-block & {
+        position: absolute;
+        top: rem(23px);
+        right: rem(4px);
       }
     }
   }
@@ -262,6 +277,25 @@ export default {
         font-size: rem(12px);
       }
     }
+  }
+}
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($red, .5);
+  opacity: 0;
+  pointer-events: none;
+  transition: .4s;
+  z-index: 10;
+  &._show {
+    opacity: 1;
+    pointer-events: all;
   }
 }
 </style>

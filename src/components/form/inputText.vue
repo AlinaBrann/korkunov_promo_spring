@@ -183,6 +183,9 @@ export default {
       opacity: 0;
     }
   }
+  ._big-padding & {
+    padding-right: rem(95px);
+  }
   @media (max-width: $sm) {
     height: rem(33px);
     font-size: rem(10px);

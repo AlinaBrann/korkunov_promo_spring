@@ -13,7 +13,7 @@ console.log(BASE_API);
 
 const service = axios.create({
   baseURL: BASE_API,
-  timeout: 15000,
+  timeout: 25000,
 });
 
 [service].forEach((item) => {

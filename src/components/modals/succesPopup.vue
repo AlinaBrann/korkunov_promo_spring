@@ -2,8 +2,7 @@
   <Modal name="succes_popup" title="Спасибо!" @closeModal="closeModal">
     <template v-slot:content>
       <div class="success_modal">
-        <p class="modal__text">
-          {{ text }}
+        <p class="modal__text" v-html="text">
         </p>
       </div>
     </template>

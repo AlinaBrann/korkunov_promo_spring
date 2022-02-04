@@ -18,7 +18,7 @@
       <button class="constructor-intro__btn" @click="goToNext()">
         Создать поздравление
       </button>
-      <router-link to="/enter-pincode" class="constructor-intro__btn"
+      <router-link :to="{ name: 'EnterPincode', params: { backTo: '/'}}" class="constructor-intro__btn"
         >Посмотреть поздравление</router-link
       >
       <a

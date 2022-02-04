@@ -15,8 +15,8 @@
         class="constructor-step__video-overlay"
       ></div>
     </div>
-    <!-- <transition name="fade"> -->
-    <!-- <button
+    <transition name="fade">
+      <button
         v-if="!showOptions"
         class="constructor-step__button btn btn--bordered"
         @click="showOptions = true"
@@ -26,32 +26,32 @@
       <div v-else class="constructor-step__first-options">
         <p class="constructor-step__first-options-text">
           Хотите сделать видеопоздравление персональным?
-        </p> -->
-    <!-- <button 
+        </p>
+        <button
           @click="goToNext()"
           class="constructor-step__first-options-btn btn btn--no-border"
         >
           Да
-        </button> -->
-    <!-- <button
+        </button>
+        <button
           @click="completeCongratulation()"
           class="constructor-step__first-options-btn btn btn--no-border"
         >
           Нет
-        </button> -->
-    <!-- <small
+        </button>
+        <small
           ><sup>*</sup> Имена отправителя и получателя будут отображены на
           открытке в видеопоздравлении
-        </small> -->
-    <!-- </div> -->
-    <!-- </transition> -->
-    <button
-      type="button"
-      @click="completeCongratulation()"
+        </small>
+      </div>
+    </transition>
+    <!-- <button
+      
       class="constructor-step__button btn btn--bordered"
+      @click="completeCongratulation()"
     >
       Создать поздравление!
-    </button>
+    </button> -->
   </constructor-step>
 </template>
 
@@ -62,41 +62,50 @@ export default {
   data: () => ({
     showOptions: true,
     radio: null,
+    submitStatus: null,
   }),
   methods: {
     goToNext() {
       this.$root.$emit("nextStep");
+      this.$store.commit("CHANGE_PRIVATE", 1);
     },
     showVideoPopup() {
       this.$modal.show("video_popup", {
-        videoUrl: localStorage.getItem("videoUrl"),
+        videoUrl: this.$store.getters.video_url,
       });
     },
     completeCongratulation() {
-      this.$store
-        .dispatch("CompleteCongratulation", {
-          congratulation_id: localStorage.getItem("congratulation_id"),
-          private: 0,
-        })
-        .then((r) => {
-          console.log(r);
-          if (r.error != 0) {
+
+      if (this.submitStatus !== "PENDING") {
+        this.submitStatus = "PENDING";
+        this.$store
+          .dispatch("CompleteCongratulation", {
+            congratulation_id: this.$store.getters.congratulation_id,
+            private: 0,
+          })
+          .then((r) => {
+            console.log(r);
+            if (r.error != 0) {
+              this.submitStatus = null;
+
+              this.$modal.show("common_error", {
+                text: "Что-то пошло не так, " + r.message.common,
+              });
+            } else {
+              this.submitStatus = null;
+              this.$store.commit("CHANGE_PINCODE", r.pin);
+              this.$router.push({
+                name: "VideoGreeting",
+              });
+            }
+          })
+          .catch((e) => {
+            this.submitStatus = null;
             this.$modal.show("common_error", {
-              text: "Что-то пошло не так, " + r.message.common,
+              text: "Что-то пошло не так, " + e,
             });
-          } else {
-            localStorage.setItem("pincode", r.pin);
-            localStorage.setItem("videoUrl", this.video);
-            this.$router.push({
-              name: "VideoGreeting",
-            });
-          }
-        })
-        .catch((e) => {
-          this.$modal.show("common_error", {
-            text: "Что-то пошло не так, " + e,
           });
-        });
+      }
     },
   },
   components: { ConstructorStep },

@@ -27,9 +27,7 @@ const routes = [
     name: "VideoGreeting",
     component: VideoGreeting,
     meta: {
-      title:
-        
-        "Тому, кто важен. Создавайте видеопоздравления от Коркунов",
+      title: "Тому, кто важен. Создавайте видеопоздравления от Коркунов",
     },
   },
   {

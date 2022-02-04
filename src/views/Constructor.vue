@@ -2,7 +2,7 @@
   <transition name="fade">
     <ConstructorIntro v-if="currentStep == 0" />
     <ConstructorStep1 v-else-if="currentStep == 1" />
-    <ConstructorStep2 v-else-if="currentStep == 2" :video="videoUrl" />
+    <ConstructorStep2 v-else-if="currentStep == 2" />
     <ConstructorStep3 v-else-if="currentStep == 3" />
     <ConstructorStep4 v-else-if="currentStep == 4" />
     <ConstructorStep5 v-else-if="currentStep == 5" />
@@ -23,15 +23,11 @@ import { isMobile } from "../utils/device";
 export default {
   data: () => ({
     currentStep: 0,
-    videoUrl: null,
-    congratulation_id: null,
-    sender_name: null,
-    sender_email: null,
-    recipient_email: null,
-    recipient_name: null,
   }),
   methods: {},
   mounted() {
+    this.private = this.$store.state.app.privateMode;
+    console.log(this.$store.state.app.privateMode);
     this.$root.$on("goBack", () => {
       if (this.currentStep > 0) {
         this.currentStep -= 1;
@@ -44,25 +40,16 @@ export default {
         this.currentStep = value;
       }
     });
-    this.$root.$on("setVideoUrl", (value) => {
-      this.videoUrl = value;
-      console.log(this.videoUrl);
-    });
-    this.$root.$on(
-      "formData",
-      (sender_name, sender_email, recipient_email, recipient_name) => {
-        this.sender_name = sender_name;
-        this.sender_email = sender_email;
-        this.recipient_email = recipient_email;
-        this.recipient_name = recipient_name;
-        console.log(this.sender_name);
-      }
-    );
   },
   created() {
     if (!isMobile()) {
       this.$router.push("/placeholder");
     }
+  },
+  watch: {
+    private(newVal) {
+      console.log(newVal);
+    },
   },
   components: {
     ConstructorIntro,

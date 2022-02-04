@@ -37,6 +37,7 @@ import Vuelidate from "vuelidate";
 
 import VueTheMask from "vue-the-mask";
 Vue.use(VueTheMask);
+
 Vue.use(VueFullPage);
 
 Vue.use(VModal);

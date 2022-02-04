@@ -3,28 +3,14 @@
     title="шаг 5. данные для получения статуса модерации"
     back="Вернуться назад"
   >
-    <inputText
-      label="Ваш E-mail"
-      color="white"
-      placeholder="example@email.com"
-      :field="sender"
-      tooltip="На&nbsp;указанный E-mail будет отправлена информация о&nbsp;статусе модерации"
-      @input="sender = $event"
-      :class="{
-        error: validationStatus($v.sender) || this.errorMessage.nsenderame,
-      }"
-      :error="
-        (!$v.sender.required && $v.sender.$error ? 'Обязательное поле' : '') ||
-        this.errorMessage.name
-      "
-    />
+    
     <div class="constructor-step__video-wrapper">
       <video
         class="constructor-step__video"
         src=""
         poster="../../assets/images/constructor/poster.png"
       ></video>
-      <div class="constructor-step__video-overlay"></div>
+      <div @click="showVideoPopup()" class="constructor-step__video-overlay"></div>
     </div>
     <button
       type="button"
@@ -44,36 +30,23 @@
 </template>
 
 <script>
-import InputText from "../form/inputText.vue";
 import ConstructorStep from "../ConstructorStep.vue";
-import { required } from "vuelidate/lib/validators";
 
 export default {
   data: () => ({
-    sender: null,
-    errorMessage: {
-      sender: null,
-    },
-  }),
-  validations: {
-    sender: { required },
-  },
-  methods: {
-    validationStatus: function (validation) {
-      return typeof validation != "undefined" ? validation.$error : false;
-    },
-    errorReset() {
-      this.$v.$reset();
 
-      this.errorMessage = {
-        sender: null,
-      };
+  }),
+  methods: {
+    showVideoPopup() {
+      this.$modal.show("video_popup", {
+        videoUrl: this.$store.getters.video_url,
+      });
     },
     goToNext(val) {
       this.$root.$emit("nextStep", val);
     },
   },
-  components: { ConstructorStep, InputText },
+  components: { ConstructorStep },
 };
 </script>
 

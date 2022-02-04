@@ -84,10 +84,8 @@ export default {
               text: "Что-то пошло не так, " + r.message.common,
             });
           } else {
-            localStorage.removeItem("congratulation_id");
-            localStorage.setItem("congratulation_id", r.congratulation_id);
-            localStorage.setItem("videoUrl", r.video);
-            this.$root.$emit("setVideoUrl", r.video);
+            this.$store.commit("CHANGE_CONGRATULATION_ID", r.congratulation_id);
+            this.$store.commit("CHANGE_VIDEO_URL",  r.video);
 
             this.$root.$emit("nextStep");
           }

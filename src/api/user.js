@@ -115,6 +115,16 @@ export function completeCongratulation(data) {
   });
 }
 
+export function completeCongratulation2(data) {
+  const options = qs.stringify(data);
+
+  return request({
+    url: "/completeCongratulation2",
+    method: "post",
+    data: options,
+  });
+}
+
 export function viewCongratulation(data) {
   const options = qs.stringify(data);
 

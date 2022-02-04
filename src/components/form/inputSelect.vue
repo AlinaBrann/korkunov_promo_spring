@@ -32,6 +32,9 @@
       @input="onInput()"
       :class="className"
     >
+      <template v-slot:option="option">
+        <span v-html="option.label"></span>
+      </template>
       <span slot="no-options">Ничего не найдено</span>
     </v-select>
 

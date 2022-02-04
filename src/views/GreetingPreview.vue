@@ -16,7 +16,8 @@
       <div class="constructor-step__social-text">Поделитесь с друзьями:</div>
       <ul>
         <li>
-          <a href="" 
+          <a
+            href=""
             v-tooltip.bottom="{
               content: 'Ссылка скопирована',
               trigger: 'click',
@@ -24,7 +25,8 @@
             @click.prevent="
               copyUrl(homeUrl + '/greeting-preview?pincode=' + code)
             "
-            class="constructor-step__social-link _big">
+            class="constructor-step__social-link _big"
+          >
             <svg
               width="15"
               height="15"
@@ -52,10 +54,11 @@
           </a>
         </li>
         <li>
-          <a 
-            href="" 
+          <a
+            href=""
             @click.prevent="shareLink()"
-            class="constructor-step__social-link">
+            class="constructor-step__social-link"
+          >
             <svg
               width="17"
               height="11"
@@ -71,10 +74,11 @@
           </a>
         </li>
         <li>
-          <a 
-            href="" 
+          <a
+            href=""
             @click.prevent="shareLink()"
-            class="constructor-step__social-link">
+            class="constructor-step__social-link"
+          >
             <svg
               width="10"
               height="17"
@@ -90,10 +94,11 @@
           </a>
         </li>
         <li>
-          <a 
-            href="" 
+          <a
+            href=""
             @click.prevent="shareLink()"
-            class="constructor-step__social-link">
+            class="constructor-step__social-link"
+          >
             <svg
               width="9"
               height="17"
@@ -147,16 +152,18 @@ export default {
     },
     shareLink() {
       if (navigator.share) {
-        navigator.share({
-          title: 'Тому, кто важен. Создавайте видеопоздравления от Коркунов',
-          url: this.homeUrl + '/greeting-preview?pincode=' + this.code
-        }).then(() => {
-          console.log('Thanks for sharing!');
-        })
-        .catch(console.error);
+        navigator
+          .share({
+            title: "Тому, кто важен. Создавайте видеопоздравления от Коркунов",
+            url: this.homeUrl + "/greeting-preview?pincode=" + this.code,
+          })
+          .then(() => {
+            console.log("Thanks for sharing!");
+          })
+          .catch(console.error);
       } else {
         this.$modal.show("common_error", {
-          text: 'Функция не поддерживается',
+          text: "Функция не поддерживается",
         });
       }
     },

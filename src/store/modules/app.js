@@ -23,9 +23,38 @@ const app = {
       data: null,
     },
     signupSocId: null,
+    privateMode: 0,
+    audio_id: null,
+    sender_name: null,
+    sender_email: null,
+    recipient_name: null,
+    video_url: null,
+    pincode: null,
+    congratulation_id: null
   },
   mutations: {
-
+    CHANGE_PRIVATE(state, privateMode) {
+      state.privateMode = privateMode;
+    },
+    CHANGE_AUDIO_ID(state, audio_id) {
+      state.audio_id = audio_id;
+    },
+    CHANGE_SENDER_NAME(state, sender_name) {
+      state.sender_name = sender_name;
+    },
+    CHANGE_RECIPIENT_NAME(state, recipient_name) {
+      state.recipient_name = recipient_name;
+    },
+    CHANGE_VIDEO_URL(state, video_url) {
+      state.video_url = video_url;
+    },
+    CHANGE_PINCODE(state, pincode) {
+      state.pincode = pincode;
+    },
+    CHANGE_CONGRATULATION_ID(state, congratulation_id) {
+      state.congratulation_id = congratulation_id;
+    },
+    
   	SIGNUP_SOC_ID: (state, data) => {
   		state.signupSocId = data;
   	},

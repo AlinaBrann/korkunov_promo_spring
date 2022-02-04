@@ -11,11 +11,11 @@
         class="constructor-step__video-overlay _play"
       ></button>
     </div>
-    <div class="constructor-step__pincode-block">
+    <div class="constructor-step__field-block">
       <p>отправтьте получателю поздравления <br />ПИН-код, указанный ниже</p>
-      <div class="constructor-step__pincode-wrapper">
+      <div class="constructor-step__field-wrapper">
         <input
-          class="constructor-step__pincode-code"
+          class="constructor-step__field-code"
           id="code"
           v-model="code"
         />
@@ -25,12 +25,37 @@
             content: 'Пин-код скопирован',
             trigger: 'click',
           }"
-          class="constructor-step__pincode-btn btn btn--primary btn--sm"
+          class="constructor-step__field-btn btn btn--primary btn--sm"
         >
           СКОПИРОВАТЬ
         </button>
       </div>
     </div>
+    <div class="constructor-step__field-block _email-block">
+      <inputText
+        label="Ваш E-mail"
+        color="white"
+        class="_big-padding"
+        placeholder="example@email.com"
+        :field="email"
+        tooltip="На&nbsp;указанный E-mail будет отправлена информация о&nbsp;статусе модерации"
+        @input="email = $event"
+        :class="{
+          error: validationStatus($v.email) || this.errorMessage.email,
+        }"
+        :error="
+          (!$v.email.required && $v.email.$error ? 'Обязательное поле' : '') ||
+          this.errorMessage.email
+        "
+      />
+       <button
+          @click="submit()"
+          class="constructor-step__field-btn btn btn--primary btn--sm"
+        >
+          отправить
+        </button>
+    </div>
+    
     <div class="constructor-step__list">
       <p class="constructor-step__list-text">
         Для просмотра поздравления необходимо:
@@ -39,7 +64,7 @@
         <li><span>1</span>Отсканировать QR-код с открытки</li>
         <li>
           <span>2</span>Перейти в раздел
-          <router-link :to="{ name: 'EnterPincode' }"
+          <router-link :to="{ name: 'EnterPincode', params: { backTo: 'video-greeting'} }"
             >ПОСМОТРЕТЬ ВИДЕОПОЗДРАВЛЕНИЕ</router-link
           >
         </li>
@@ -107,10 +132,11 @@
           </a>
         </li>
         <li>
-          <a 
-            href="" 
+          <a
+            href=""
             @click.prevent="shareLink()"
-            class="constructor-step__social-link">
+            class="constructor-step__social-link"
+          >
             <svg
               width="10"
               height="17"
@@ -126,10 +152,11 @@
           </a>
         </li>
         <li>
-          <a 
-            href="" 
+          <a
+            href=""
             @click.prevent="shareLink()"
-            class="constructor-step__social-link">
+            class="constructor-step__social-link"
+          >
             <svg
               width="9"
               height="17"
@@ -157,14 +184,35 @@
 </template>
 
 <script>
+import InputText from '../components/form/inputText.vue'
 import ConstructorStep from "../components/ConstructorStep.vue";
+import { required } from "vuelidate/lib/validators";
+
 export default {
   data: () => ({
     homeUrl: window.location.origin,
     code: "8jd38e48",
+    email: null,
     videoUrl: null,
+    errorMessage: {
+      email: null,
+    },
+    submitStatus: null
   }),
+  validations: {
+    email: { required },
+  },
   methods: {
+    validationStatus: function (validation) {
+      return typeof validation != "undefined" ? validation.$error : false;
+    },
+    errorReset() {
+      this.$v.$reset();
+
+      this.errorMessage = {
+        email: null,
+      };
+    },
     showVideoPopup() {
       this.$modal.show("video_popup", {
         videoUrl: this.videoUrl,
@@ -185,30 +233,61 @@ export default {
     },
     shareLink() {
       if (navigator.share) {
-        navigator.share({
-          title: 'Тому, кто важен. Создавайте видеопоздравления от Коркунов',
-          url: this.homeUrl + '/greeting-preview?pincode=' + this.code
-        }).then(() => {
-          console.log('Thanks for sharing!');
-          
-          
-        })
-        .catch(console.error);
+        navigator
+          .share({
+            title: "Тому, кто важен. Создавайте видеопоздравления от Коркунов",
+            url: this.homeUrl + "/greeting-preview?pincode=" + this.code,
+          })
+          .then(() => {
+            console.log("Thanks for sharing!");
+          })
+          .catch(console.error);
       } else {
         this.$modal.show("common_error", {
-          text: 'Функция не поддерживается',
+          text: "Функция не поддерживается",
         });
       }
     },
+    submit() {
+      this.$v.$touch();
+      if (this.$v.$pendding || this.$v.$error) return;
+
+      if (this.submitStatus !== "PENDING") {
+        this.submitStatus = "PENDING";
+      this.$store
+        .dispatch("CompleteCongratulation2", {
+          congratulation_id: this.$store.getters.congratulation_id,
+          sender_email: this.email,
+        })
+        .then((r) => {
+          console.log(r);
+          if (r.error != 0) {
+            this.submitStatus = null;
+            this.$modal.show("common_error", {
+              text: "Что-то пошло не так, " + r.message.common,
+            });
+          } else {
+            this.submitStatus = null;
+            this.$modal.show("succes_popup", {
+              text: "На&nbsp;указанный E-mail будет отправлена информация о&nbsp;статусе модерации и пинкод поздравления"
+            });
+          }
+        })
+        .catch((e) => {
+          this.submitStatus = null;
+          this.$modal.show("common_error", {
+            text: "Что-то пошло не так, " + e,
+          });
+        });
+      }
+    }
   },
   created() {},
   mounted() {
-    this.code = localStorage.getItem("pincode");
-
-    this.videoUrl = localStorage.getItem("videoUrl");
-    console.log("pin " + this.code + " video " + this.videoUrl);
+    this.code = this.$store.getters.pincode;
+    this.videoUrl = this.$store.getters.video_url;
   },
-  components: { ConstructorStep },
+  components: { ConstructorStep, InputText },
 };
 </script>
 
