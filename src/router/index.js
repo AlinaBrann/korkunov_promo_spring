@@ -7,7 +7,7 @@ import { isPortrait, isMobile, getOffset } from "../utils/device";
 
 Vue.use(VueRouter);
 
-const titlePrefix = "Поздравьте того, кто важен — ";
+const titlePrefix = "Поздравьте того, кто важен";
 
 const routes = [
   {
@@ -16,7 +16,7 @@ const routes = [
     name: "Home",
     component: Home,
     meta: {
-      title: titlePrefix + "Главная",
+      title: titlePrefix
     },
   },
   {
@@ -25,7 +25,7 @@ const routes = [
     name: "ComingSoon",
     component: ComingSoon,
     meta: {
-      title: titlePrefix + "Акция скоро начнется",
+      title: titlePrefix + " — Акция скоро начнется",
     },
   },
 ];

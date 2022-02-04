@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer" :class="className">
+  <footer class="footer fp-auto-heigh" :class="className">
     <div class="container">
       <div class="footer__row">
         <div class="footer__nav">
@@ -106,7 +106,7 @@ export default {
     text-align: center;
     color: #FFF;
   }
-  @media (min-width: $sm) {
+  @media (min-width: $md) {
     padding: rem(70px) rem(123px) rem(50px);
     &__row {
       flex-direction: row;

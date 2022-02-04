@@ -145,7 +145,7 @@ export default {
 
 <style lang="scss" scoped>
 .faq {
-  padding-top: 15vh;
+  padding-top: calc(var(--vh, 1vh) * 15);
   &__row {
     display: flex;
     flex-direction: column;
@@ -260,7 +260,7 @@ export default {
       font-size: rem(12px);
     }
   }
-  @media (min-width: $sm) {
+  @media (min-width: $md) {
     padding-top: rem(85px);
     padding-bottom: rem(25px);
     &__row {

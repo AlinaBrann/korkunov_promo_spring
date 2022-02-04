@@ -14,7 +14,7 @@
 
     <div class="hero-wtb">
       <a href="#edadil" class="hero-wtb__edadil visible-xs">
-        <img src="../assets/images/edadil_logo.png" alt="" />
+        <img src="../assets/images/edadil_logo.svg" alt="" />
         <span>Акция в Едадил</span>
         <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
           <path
@@ -91,8 +91,8 @@ export default {
     width: 100%;
     height: 50%;
     background: url("../assets/images/hero/bottom-flowers-mobile.png") no-repeat
-      bottom;
-    background-size: 100%;
+      top;
+    background-size: cover;
     z-index: 2;
   }
   .container {
@@ -215,8 +215,7 @@ export default {
     color: #fff;
   }
   @media (min-width: $sm) {
-    background: url("../assets/images/hero/flowers.png") no-repeat right bottom !important;
-    background-size: auto rem(760px) !important;
+
     &__title {
       font-size: rem(45px);
       line-height: rem(56px);
@@ -228,6 +227,8 @@ export default {
     }
   }
   @media (min-width: $md) {
+    background: url("../assets/images/hero/flowers.png") no-repeat right bottom !important;
+    background-size: auto rem(760px) !important;
     &::after {
       display: none;
     }
@@ -287,7 +288,7 @@ export default {
       }
     }
   }
-  @media (max-width: $sm) {
+  @media (max-width: $md) {
     &::after {
       content: "";
       display: block;

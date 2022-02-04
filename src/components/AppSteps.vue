@@ -545,7 +545,7 @@ export default {
   }
   @media (min-width: $sm) {
     &-production-slider {
-      left: rem(-85px);
+      left: rem(-65px);
     }
     &-nav {
       &__item {
@@ -557,6 +557,15 @@ export default {
         &-descr {
           font-size: rem(18px);
           line-height: rem(24px);
+        }
+      }
+    }
+  }
+  @media (min-width: $sm) {
+    &-nav {
+      &__item {
+        &-button.btn {
+          margin-top: rem(20px);
         }
       }
     }

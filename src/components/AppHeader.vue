@@ -95,7 +95,7 @@
               class="header__nav-link _accent _green"
               :class="{ _active: $route.hash == '#edadil' }"
             >
-              <img src="../assets/images/edadil_logo.png" alt="" />
+              <img src="../assets/images/edadil_logo.svg" alt="" />
               <span>Акция в Едадил</span>
             </a>
             <!-- <a
@@ -166,7 +166,7 @@
             class="header__nav-link _accent _green"
             :class="{ _active: $route.hash == '#edadil' }"
           >
-            <img src="../assets/images/edadil_logo.png" alt="" />
+            <img src="../assets/images/edadil_logo.svg" alt="" />
             <span>Акция в Едадил</span>
           </a>
           <!-- <a

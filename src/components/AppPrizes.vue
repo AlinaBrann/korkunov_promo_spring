@@ -2,7 +2,7 @@
   <section class="prizes section">
     <div class="container">
       <h2 class="prizes__title" data-show>
-        поздравляйте тех, кто важен
+        поздравьте того, кто важен
         <span>выигрывайте призы</span>
       </h2>
       <div
@@ -141,7 +141,7 @@ export default {
   position: relative;
   display: flex;
   z-index: 1;
-  padding-top: 15vh;
+  padding-top: calc(var(--vh, 1vh) * 15);
   overflow: hidden;
   &::before {
     content: "";
@@ -289,12 +289,13 @@ export default {
       }
       &-img {
         &-wrapper {
-          width: rem(69px);
-          height: rem(69px);
+          width: calc(var(--vh, 1vh) * 13);
+          height: calc(var(--vh, 1vh) * 13);
         }
       }
       &-text {
-        font-size: rem(14px);
+        font-size: rem(12px);
+        line-height: 1.4;
         font-family: "Light";
         font-weight: 600;
       }

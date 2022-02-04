@@ -2,7 +2,7 @@
   <section class="edadil-promo section">
     <div class="container">
       <div class="edadil-promo__title" data-show>
-        поздравляйте тех, кто важен <span>получайте кешбэк</span>
+        поздравьте того, кто важен <span>получайте кешбэк</span>
       </div>
       <ul class="edadil-promo__steps">
         <li
@@ -44,10 +44,10 @@ export default {
     publicPath: process.env.BASE_URL,
     isMobile: null,
     steps: [
-      "купите «Коркунов»",
-      "СКАНИРУЙте ЧЕК В&nbsp;ЕДАДИЛ",
-      "ПОЛУЧИте КЕШБЭК",
-      "ВЫИГРЫВАЙте ПРИЗЫ",
+      "купите  <br class='hidden-xs'>«Коркунов»",
+      "СКАНИРУЙте <br class='hidden-xs'>ЧЕК В&nbsp;ЕДАДИЛ",
+      "ПОЛУЧИте  <br class='hidden-xs'>КЕШБЭК",
+      "ВЫИГРЫВАЙте  <br class='hidden-xs'>ПРИЗЫ",
     ],
   }),
   mounted() {
@@ -59,7 +59,7 @@ export default {
 <style lang="scss" scoped>
 .edadil-promo {
   display: flex;
-  padding-top: 15vh;
+  padding-top: calc(var(--vh, 1vh) * 15);
   &::before {
     content: "";
     position: absolute;
@@ -119,9 +119,10 @@ export default {
   &-buttons {
     position: relative;
     display: flex;
+    max-width: 100%;
     padding-top: rem(10px);
     &__button {
-      max-width: 60%;
+      max-width: 70%;
     }
   }
   &__rules {
@@ -172,6 +173,7 @@ export default {
     &__item {
       flex: 0 0 23%;
       margin-bottom: 0;
+      padding-right: rem(20px);
       font-size: rem(30px);
       span {
         font-size: rem(33px);
