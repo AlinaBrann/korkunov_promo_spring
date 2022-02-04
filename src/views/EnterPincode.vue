@@ -18,9 +18,7 @@
           id="code"
           v-model="code"
           placeholder="Пин-код"
-          :class="{
-            error: validationStatus($v.code),
-          }"
+          required
         />
         <div
           v-if="validationStatus($v.code)"

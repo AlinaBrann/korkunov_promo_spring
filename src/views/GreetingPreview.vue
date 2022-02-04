@@ -16,8 +16,7 @@
       <div class="constructor-step__social-text">Поделитесь с друзьями:</div>
       <ul>
         <li>
-          <a
-            href=""
+          <a href=""
             v-tooltip.bottom="{
               content: 'Ссылка скопирована',
               trigger: 'click',
@@ -178,6 +177,7 @@ export default {
         console.log(r);
         if (r.error != 0) {
           this.errorText = r.message.common[0];
+          this.showErorr();
         } else {
           this.videoUrl = r.video;
           this.pass = true;
