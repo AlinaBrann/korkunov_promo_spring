@@ -28,6 +28,7 @@ export default {
 
     beforeOpen(event) {
       this.text = event.params.text;
+      
     },
   },
 };

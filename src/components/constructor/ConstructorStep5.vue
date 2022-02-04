@@ -12,13 +12,13 @@
       ></video>
       <div @click="showVideoPopup()" class="constructor-step__video-overlay"></div>
     </div>
-    <button
+    <router-link
       type="button"
-      @click="goToNext()"
+      :to="{ name: 'VideoGreeting'}"
       class="constructor-step__button btn btn--bordered"
     >
       продолжить
-    </button>
+    </router-link>
     <button
       type="button"
       @click="goToNext(2)"

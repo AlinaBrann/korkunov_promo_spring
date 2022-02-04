@@ -103,6 +103,11 @@ export default {
     flex-direction: column;
     flex: auto;
     padding-bottom: rem(30px);
+    a.constructor-step__button {
+      & + .constructor-step__button {
+         margin-top: rem(7px);
+      }
+    }
   }
   &__button {
     display: flex;
