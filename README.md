@@ -1,4 +1,4 @@
-# Hvostiki
+# Constructor
 
 ## Project setup
 ```

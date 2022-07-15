@@ -260,7 +260,12 @@ export default {
     ul {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      li {
+        &:not(:last-child) {
+          margin-right: rem(15px);
+        }
+      }
     }
     &-link {
       display: flex;

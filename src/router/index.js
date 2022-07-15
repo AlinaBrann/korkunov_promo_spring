@@ -11,7 +11,7 @@ import { isPortrait, isMobile, getOffset } from "../utils/device";
 
 Vue.use(VueRouter);
 
-const titlePrefix = "Поздравьте того, кто важен — ";
+const titlePrefix = "Тому, кто важен. Создавайте видеопоздравления от Коркунов";
 
 const routes = [
   {
@@ -19,7 +19,7 @@ const routes = [
     name: "Constructor",
     component: Constructor,
     meta: {
-      title: titlePrefix + "Создайте персональное видеопоздравление",
+      title: titlePrefix
     },
   },
   {
@@ -27,7 +27,7 @@ const routes = [
     name: "VideoGreeting",
     component: VideoGreeting,
     meta: {
-      title: "Тому, кто важен. Создавайте видеопоздравления от Коркунов",
+      title: titlePrefix
     },
   },
   {
@@ -35,7 +35,7 @@ const routes = [
     name: "GreetingPreview",
     component: GreetingPreview,
     meta: {
-      title: titlePrefix + "Просмотр видеопоздравления",
+      title: titlePrefix
     },
   },
   {
@@ -43,7 +43,7 @@ const routes = [
     name: "EnterPincode",
     component: EnterPincode,
     meta: {
-      title: titlePrefix + "Посмотреть видеопоздравление",
+      title: titlePrefix
     },
   },
   {
@@ -51,7 +51,7 @@ const routes = [
     name: "VideoPage",
     component: VideoPage,
     meta: {
-      title: titlePrefix + "Посмотреть видеопоздравление",
+      title: titlePrefix
     },
   },
   {

@@ -557,20 +557,7 @@ export default {
       { text: "Яны" },
       { text: "Янины" },
       { text: "Ясмины" },
-      { text: "Дорогого друга" },
-      { text: "Милого друга" },
-      { text: "Мамы" },
-      { text: "Папы" },
-      { text: "Брата" },
-      { text: "Сестры" },
-      { text: "Бабушки" },
-      { text: "Дедушки" },
-      { text: "Любимой" },
-      { text: "Любимого" },
-      { text: "Дочери" },
-      { text: "Сына" },
-      { text: "Коллеги" },
-      { text: "Любящей подруги" },
+
     ],
     errorMessage: {
       sender: null,
@@ -601,6 +588,7 @@ export default {
       this.$root.$emit("nextStep");
     },
   },
+
   mounted() {
     setTimeout(() => {
       const sender = document
@@ -610,6 +598,7 @@ export default {
         sender.setAttribute("placeholder", "Ваше имя");
       }
     }, 100);
+    
   },
   components: { ConstructorStep, VueInfiniteAutocomplete },
 };

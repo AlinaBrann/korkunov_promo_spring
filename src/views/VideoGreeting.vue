@@ -38,7 +38,7 @@
         class="_big-padding"
         placeholder="example@email.com"
         :field="email"
-        tooltip="На&nbsp;указанный E-mail будет отправлена информация о&nbsp;статусе модерации"
+        tooltip="На&nbsp;указанный e-mail будет отправлен пин-код"
         @input="email = $event"
         :class="{
           error: validationStatus($v.email) || this.errorMessage.email,
@@ -151,26 +151,6 @@
             </svg>
           </a>
         </li>
-        <li>
-          <a
-            href=""
-            @click.prevent="shareLink()"
-            class="constructor-step__social-link"
-          >
-            <svg
-              width="9"
-              height="17"
-              viewBox="0 0 9 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M6.76058 2.66423H8.26944V0.113043C7.5387 0.0353776 6.80426 -0.00232217 6.0694 0.000110608C3.89157 0.000110608 2.39999 1.32877 2.39999 3.77011V6.01767H0V8.86939H2.40369V16.0459H5.34737V8.86939H7.65232L8.02259 6.01767H5.34737V4.05275C5.34737 3.22828 5.57632 2.66423 6.76058 2.66423Z"
-                fill="white"
-              />
-            </svg>
-          </a>
-        </li>
       </ul>
     </div>
     <a
@@ -269,7 +249,7 @@ export default {
           } else {
             this.submitStatus = null;
             this.$modal.show("succes_popup", {
-              text: "На&nbsp;указанный E-mail будет отправлена информация о&nbsp;статусе модерации и пинкод поздравления"
+              text: "На&nbsp;указанный e-mail будет отправлен пин-код"
             });
           }
         })
